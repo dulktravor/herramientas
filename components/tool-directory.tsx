@@ -1,8 +1,10 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import Link from 'next/link';
 import {
   Braces,
+  ArrowUpRight,
   FileScan,
   Files,
   Images,
@@ -28,7 +30,8 @@ const tools = [
     category: 'imagenes',
     keywords: 'jpg png webp avif comprimir convertir reducir redimensionar foto',
     icon: Images,
-    stage: 'Primera herramienta',
+    stage: 'Disponible',
+    href: '/herramientas/imagenes',
   },
   {
     name: 'Organizar PDF',
@@ -36,7 +39,8 @@ const tools = [
     category: 'pdf',
     keywords: 'unir dividir separar ordenar rotar eliminar paginas documento',
     icon: Files,
-    stage: 'Primera herramienta',
+    stage: 'Disponible',
+    href: '/herramientas/pdf',
   },
   {
     name: 'Limpiar metadatos',
@@ -44,7 +48,8 @@ const tools = [
     category: 'imagenes',
     keywords: 'exif gps privacidad limpiar borrar datos foto camara',
     icon: ShieldEllipsis,
-    stage: 'Primera herramienta',
+    stage: 'Disponible',
+    href: '/herramientas/metadatos',
   },
   {
     name: 'Imagen a texto',
@@ -53,6 +58,7 @@ const tools = [
     keywords: 'ocr texto captura foto escaneo reconocer copiar',
     icon: ScanText,
     stage: 'Siguiente etapa',
+    href: null,
   },
   {
     name: 'Conversor de datos',
@@ -61,6 +67,7 @@ const tools = [
     keywords: 'csv json xml yaml excel tabla convertir transformar',
     icon: Braces,
     stage: 'Siguiente etapa',
+    href: null,
   },
   {
     name: 'Escáner a PDF',
@@ -69,6 +76,7 @@ const tools = [
     keywords: 'escaner foto documento perspectiva corregir crear pdf',
     icon: FileScan,
     stage: 'Siguiente etapa',
+    href: null,
   },
 ] as const;
 
@@ -144,9 +152,8 @@ export function ToolDirectory() {
         <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {filteredTools.map((tool) => {
             const Icon = tool.icon;
-            return (
+            const content = (
               <Card
-                key={tool.name}
                 className="min-h-60 gap-0 border-transparent py-0 ring-1 ring-foreground/10 transition-[transform,box-shadow] duration-200 hover:-translate-y-1 hover:shadow-[0_18px_42px_color-mix(in_oklch,var(--foreground)_8%,transparent)]"
               >
                 <CardHeader className="px-6 pt-6">
@@ -157,11 +164,19 @@ export function ToolDirectory() {
                   <CardDescription className="mt-1 leading-6">{tool.description}</CardDescription>
                 </CardHeader>
                 <CardContent className="mt-auto px-6 pb-6 pt-5">
-                  <Badge variant={tool.stage === 'Primera herramienta' ? 'secondary' : 'outline'}>
+                  <Badge variant={tool.stage === 'Disponible' ? 'secondary' : 'outline'}>
                     {tool.stage}
+                    {tool.href ? <ArrowUpRight aria-hidden="true" /> : null}
                   </Badge>
                 </CardContent>
               </Card>
+            );
+            return tool.href ? (
+              <Link key={tool.name} href={tool.href} className="rounded-xl focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50">
+                {content}
+              </Link>
+            ) : (
+              <div key={tool.name}>{content}</div>
             );
           })}
         </div>
