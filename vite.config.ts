@@ -47,7 +47,6 @@ export default defineConfig(async () => {
   return {
     // The on-demand PDF engine is intentionally isolated in a ~510 KB chunk.
     build: { chunkSizeWarningLimit: 600 },
-    optimizeDeps: { exclude: ['lucide-react', '@base-ui/react'] },
     css: { postcss: { plugins: [tailwindcss()] } },
     server: isCodexSeatbeltSandbox
       ? { watch: { useFsEvents: false, usePolling: true } }
