@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import { ConsentPreferencesButton } from '@/components/consent-provider';
+import { ConsentPreferences } from '@/components/consent-provider';
 import { ContentPageShell } from '@/components/content-page-shell';
 
 export const metadata: Metadata = {
@@ -28,13 +28,13 @@ export default function PrivacyPage() {
       </section>
       <section>
         <h2>Medición y publicidad opcionales</h2>
-        <p>Si aceptas las tecnologías opcionales, el sitio puede cargar Cloudflare Web Analytics para conocer el uso agregado y Google AdSense para mostrar publicidad. Google y sus socios pueden utilizar identificadores o almacenamiento del navegador conforme a sus propias políticas y a la configuración regional aplicable.</p>
-        <p>Si eliges “Solo necesarias”, las herramientas siguen funcionando y el sitio no carga desde su código los servicios opcionales configurados.</p>
+        <p>Puedes autorizar por separado los anuncios contextuales, la personalización publicitaria y la medición agregada. Los anuncios contextuales se seleccionan principalmente según el contenido que estás viendo; los personalizados pueden utilizar intereses y otras señales autorizadas.</p>
+        <p>Si desactivas la personalización pero mantienes los anuncios, el sitio solicitará anuncios no personalizados. Google puede seguir procesando determinadas señales técnicas para entregar, medir y proteger la publicidad contra fraude, conforme a la normativa aplicable.</p>
       </section>
       <section>
         <h2>Tu elección</h2>
-        <p>La preferencia se guarda localmente en tu navegador. Puedes eliminarla y volver a decidir en cualquier momento.</p>
-        <div className="mt-4"><ConsentPreferencesButton /></div>
+        <p>La preferencia se guarda localmente en tu navegador. Puedes modificarla en cualquier momento; desactivar todas las opciones no afecta el funcionamiento de las herramientas.</p>
+        <div className="mt-5"><ConsentPreferences /></div>
       </section>
       <section>
         <h2>Conservación y contacto</h2>

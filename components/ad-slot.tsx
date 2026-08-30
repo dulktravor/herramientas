@@ -10,10 +10,10 @@ type AdSlotProps = {
 };
 
 export function AdSlot({ slot, placement }: AdSlotProps) {
-  const { preference } = useConsent();
+  const { settings } = useConsent();
   const initialized = useRef(false);
   const client = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
-  const enabled = preference === 'all' && Boolean(client && slot);
+  const enabled = settings.advertising && Boolean(client && slot);
 
   useEffect(() => {
     if (!enabled || initialized.current) return;
