@@ -88,3 +88,69 @@ git commit -m "Descripción de tus cambios"
 git push origin main
 ```
 Cloudflare detectará automáticamente el `push`, compilará y actualizará el sitio en producción sin necesidad de intervención manual.
+
+---
+
+## 5. 🚀 Fase 3 — Nuevas herramientas
+
+Se amplió la colección de tres a seis herramientas disponibles, manteniendo el procesamiento local como principio principal.
+
+### Imagen a texto (OCR)
+- Nueva ruta: `/herramientas/ocr`.
+- Reconocimiento de texto en español, inglés o ambos idiomas.
+- Indicador de progreso, cancelación, edición del resultado, copia y descarga en TXT.
+- La imagen permanece en el navegador; solamente se descarga el modelo lingüístico requerido.
+
+### Conversor de datos
+- Nueva ruta: `/herramientas/datos`.
+- Conversión entre JSON, CSV, TSV y XML.
+- Detección automática del formato de origen, carga de archivos, pegado directo y vista tabular.
+- Copia y descarga del resultado sin enviar los datos a un servidor.
+
+### Escáner a PDF
+- Nueva ruta: `/herramientas/escaner`.
+- Creación de documentos PDF a partir de hasta 20 fotografías.
+- Reordenamiento, rotación, recorte de bordes, mejora de legibilidad y formatos A4, Carta u original.
+- Generación y descarga del PDF completamente en el navegador.
+
+### Dependencias y catálogo
+- Se incorporó `tesseract.js` como motor OCR ejecutado en un Web Worker.
+- Las tres tarjetas que figuraban como “Siguiente etapa” ahora aparecen como “Disponible”.
+- El sitio cuenta con siete rutas: la portada y seis herramientas independientes.
+
+---
+
+## 6. 🌱 Fase 4 — Crecimiento, SEO y monetización responsable
+
+### SEO técnico
+- Se añadieron `robots.txt` y `sitemap.xml` dinámicos con todas las páginas públicas.
+- Cada herramienta tiene URL canónica y metadatos propios.
+- La portada incorpora datos estructurados `WebSite` e `ItemList` para describir la colección.
+- El dominio de producción actual se utiliza como origen predeterminado y puede sustituirse con `NEXT_PUBLIC_SITE_URL`.
+
+### Monetización preparada, pero desactivada
+- Se creó un componente reutilizable para anuncios AdSense responsivos y horizontales.
+- Solo existe un espacio después del catálogo y otro después del contenido de cada herramienta; nunca se superpone a controles, cargas o descargas.
+- Los anuncios no se renderizan si faltan el identificador del editor y los identificadores de bloque.
+- La ruta `/ads.txt` se genera automáticamente con el editor configurado y no publica identificadores ficticios.
+
+### Privacidad y consentimiento
+- Se añadió una elección entre tecnologías esenciales y servicios opcionales.
+- Cloudflare Web Analytics y Google AdSense solo se cargan desde el sitio después de aceptar las opciones.
+- La preferencia se conserva en el navegador y puede revisarse desde la política de privacidad.
+
+### Contenido institucional
+- Nueva página `/privacidad` con detalles sobre procesamiento local, infraestructura y servicios opcionales.
+- Nueva página `/terminos` con condiciones de uso y límites de responsabilidad.
+- Nueva página `/acerca-de` con los principios del proyecto y el modelo de sostenibilidad.
+- La navegación legal se comparte entre la portada, las herramientas y las páginas informativas.
+
+### Variables preparadas
+```env
+NEXT_PUBLIC_SITE_URL=
+NEXT_PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN=
+NEXT_PUBLIC_ADSENSE_CLIENT_ID=
+NEXT_PUBLIC_ADSENSE_HOME_SLOT=
+NEXT_PUBLIC_ADSENSE_TOOL_SLOT=
+NEXT_PUBLIC_CONTACT_EMAIL=
+```

@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+
+import { ConsentProvider } from '@/components/consent-provider';
+import { siteDescription, siteUrl } from '@/lib/site';
 import './globals.css';
 
 const geistSans = Geist({
@@ -13,10 +16,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'),
-  title: 'Herramientas — utilidades rápidas y privadas',
-  description:
-    'Herramientas gratuitas para imágenes, PDF y datos que funcionan directamente en tu navegador.',
+  metadataBase: new URL(siteUrl),
+  applicationName: 'Herramientas',
+  title: {
+    default: 'Herramientas — utilidades rápidas y privadas',
+    template: '%s | Herramientas',
+  },
+  description: siteDescription,
+  alternates: { canonical: '/' },
+  category: 'technology',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
+  },
   openGraph: {
     title: 'Herramientas',
     description: 'Utilidades rápidas y privadas para tus archivos.',
@@ -37,6 +50,9 @@ export const metadata: Metadata = {
     description: 'Utilidades rápidas y privadas para tus archivos.',
     images: ['/og.png'],
   },
+  ...(process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID
+    ? { other: { 'google-adsense-account': process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID } }
+    : {}),
 };
 
 export default function RootLayout({
@@ -47,16 +63,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
-        {process.env.NEXT_PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN ? (
-          <script
-            defer
-            src="https://static.cloudflareinsights.com/beacon.min.js"
-            data-cf-beacon={JSON.stringify({
-              token: process.env.NEXT_PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN,
-            })}
-          />
-        ) : null}
+        <ConsentProvider>{children}</ConsentProvider>
       </body>
     </html>
   );

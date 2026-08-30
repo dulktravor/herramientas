@@ -4,8 +4,9 @@ import { MetadataCleaner } from '@/components/metadata-cleaner';
 import { ToolPageShell } from '@/components/tool-page-shell';
 
 export const metadata: Metadata = {
-  title: 'Limpiar metadatos — Herramientas',
+  title: 'Limpiar metadatos',
   description: 'Inspecciona y elimina datos EXIF, ubicación GPS y detalles ocultos de tus fotografías.',
+  alternates: { canonical: '/herramientas/metadatos' },
   openGraph: { images: [] },
   twitter: { images: [] },
 };

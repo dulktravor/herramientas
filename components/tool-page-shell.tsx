@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { ArrowLeft, LockKeyhole, Sparkles } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
+import { AdSlot } from '@/components/ad-slot';
+import { SiteFooter } from '@/components/site-footer';
 import { buttonVariants } from '@/components/ui/button';
 
 type ToolPageShellProps = {
@@ -37,7 +39,9 @@ export function ToolPageShell({ title, description, children }: ToolPageShellPro
         <h1 className="max-w-3xl text-balance text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">{title}</h1>
         <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground">{description}</p>
         <div className="mt-10">{children}</div>
+        <AdSlot slot={process.env.NEXT_PUBLIC_ADSENSE_TOOL_SLOT} placement="tool" />
       </div>
+      <SiteFooter />
     </main>
   );
 }

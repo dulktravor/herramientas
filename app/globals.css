@@ -162,6 +162,29 @@ body {
   box-shadow: 0 18px 38px color-mix(in oklch, var(--foreground) 8%, transparent);
 }
 
+.legal-copy h2 {
+  color: var(--foreground);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.legal-copy h3 {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+.legal-copy p + p {
+  margin-top: 0.75rem;
+}
+
+.legal-copy a {
+  color: var(--foreground);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }

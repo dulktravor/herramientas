@@ -12,6 +12,7 @@ import {
   Search,
   ShieldEllipsis,
 } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
 import {
@@ -23,7 +24,17 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 
-const tools = [
+type ToolItem = {
+  name: string;
+  description: string;
+  category: 'imagenes' | 'pdf' | 'datos';
+  keywords: string;
+  icon: LucideIcon;
+  stage: 'Disponible' | 'Siguiente etapa';
+  href: string | null;
+};
+
+const tools: ToolItem[] = [
   {
     name: 'Estudio de imágenes',
     description: 'Comprime, convierte y redimensiona varias imágenes a la vez.',
@@ -57,8 +68,8 @@ const tools = [
     category: 'imagenes',
     keywords: 'ocr texto captura foto escaneo reconocer copiar',
     icon: ScanText,
-    stage: 'Siguiente etapa',
-    href: null,
+    stage: 'Disponible',
+    href: '/herramientas/ocr',
   },
   {
     name: 'Conversor de datos',
@@ -66,8 +77,8 @@ const tools = [
     category: 'datos',
     keywords: 'csv json xml yaml excel tabla convertir transformar',
     icon: Braces,
-    stage: 'Siguiente etapa',
-    href: null,
+    stage: 'Disponible',
+    href: '/herramientas/datos',
   },
   {
     name: 'Escáner a PDF',
@@ -75,10 +86,10 @@ const tools = [
     category: 'pdf',
     keywords: 'escaner foto documento perspectiva corregir crear pdf',
     icon: FileScan,
-    stage: 'Siguiente etapa',
-    href: null,
+    stage: 'Disponible',
+    href: '/herramientas/escaner',
   },
-] as const;
+];
 
 const categories = [
   { id: 'todas', label: 'Todas' },

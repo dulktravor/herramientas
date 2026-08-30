@@ -10,9 +10,13 @@ import {
   UserRoundX,
   Zap,
 } from 'lucide-react';
+import Link from 'next/link';
 
+import { AdSlot } from '@/components/ad-slot';
+import { SiteFooter } from '@/components/site-footer';
 import { ToolDirectory } from '@/components/tool-directory';
 import { buttonVariants } from '@/components/ui/button';
+import { absoluteUrl, publicTools, siteDescription } from '@/lib/site';
 
 const trustPoints = [
   {
@@ -54,8 +58,32 @@ const steps = [
 ];
 
 export default function Home() {
+  const structuredData = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'Herramientas',
+      url: absoluteUrl('/'),
+      description: siteDescription,
+      inLanguage: 'es',
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: 'Herramientas disponibles',
+      numberOfItems: publicTools.length,
+      itemListElement: publicTools.map((tool, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: tool.name,
+        url: absoluteUrl(tool.path),
+      })),
+    },
+  ];
+
   return (
     <main className="min-h-screen overflow-hidden bg-background">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       <header className="sticky top-0 z-40 border-b border-border/70 bg-background/88 backdrop-blur-xl">
         <nav
           aria-label="Navegación principal"
@@ -72,6 +100,7 @@ export default function Home() {
             <a className="transition-colors hover:text-foreground" href="#herramientas">Explorar</a>
             <a className="transition-colors hover:text-foreground" href="#como-funciona">Cómo funciona</a>
             <a className="transition-colors hover:text-foreground" href="#privacidad">Privacidad</a>
+            <Link className="transition-colors hover:text-foreground" href="/acerca-de">Acerca de</Link>
           </div>
 
           <a
@@ -102,6 +131,7 @@ export default function Home() {
 
       <section id="herramientas" className="mx-auto max-w-7xl scroll-mt-24 px-5 pb-24 sm:px-8">
         <ToolDirectory />
+        <AdSlot slot={process.env.NEXT_PUBLIC_ADSENSE_HOME_SLOT} placement="home" />
       </section>
 
       <section id="privacidad" className="scroll-mt-24 border-y border-border bg-secondary/45 px-5 py-20 sm:px-8">
@@ -115,6 +145,9 @@ export default function Home() {
               <p className="mt-4 max-w-lg leading-7 text-muted-foreground">
                 Cada herramienta explicará claramente dónde se procesa el archivo y qué sucede con tus datos.
               </p>
+              <Link href="/privacidad" className="mt-5 inline-flex text-sm font-medium text-primary underline underline-offset-4">
+                Leer la política de privacidad
+              </Link>
             </div>
             <div className="grid gap-4 sm:grid-cols-3">
               {trustPoints.map((point) => {
@@ -164,13 +197,13 @@ export default function Home() {
             <div>
               <p className="flex items-center gap-2 text-sm font-medium opacity-80">
                 <CheckCircle2 className="size-4" aria-hidden="true" />
-                Base preparada para crecer
+                Seis herramientas disponibles
               </p>
               <h2 className="mt-3 max-w-2xl text-balance text-3xl font-semibold tracking-[-0.035em]">
-                Imágenes, PDF y datos serán solo el comienzo.
+                Una colección útil que puede crecer sin perder claridad.
               </h2>
               <p className="mt-3 max-w-2xl leading-7 opacity-75">
-                Las próximas herramientas se incorporarán a la misma experiencia, sin convertir el sitio en un catálogo desordenado.
+                Cada nueva utilidad mantiene el mismo enfoque: procesamiento local, opciones comprensibles y resultados listos para descargar.
               </p>
             </div>
             <a
@@ -187,19 +220,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="border-t border-border px-5 py-8 sm:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col gap-5 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-2 text-foreground">
-            <Sparkles className="size-4 text-primary" aria-hidden="true" />
-            <span className="font-medium">Herramientas</span>
-          </div>
-          <p>Utilidades rápidas y privadas para tus archivos.</p>
-          <div className="flex gap-5">
-            <a href="#privacidad" className="hover:text-foreground">Privacidad</a>
-            <a href="#como-funciona" className="hover:text-foreground">Cómo funciona</a>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }
