@@ -375,12 +375,13 @@ La presencia de `.openai/hosting.json` no sustituye la infraestructura de produc
 
 ### Versión: 2026-08-30 — identidad CeroNube y modo oscuro
 
-- **Commit de producto:** se registra después de crear el commit para evitar incluir un identificador todavía inexistente.
+- **Commit de producto:** `319aad8` (`feat: renovar identidad CeroNube y modo oscuro`).
 - **Tipo:** identidad, diseño, accesibilidad, SEO y documentación.
 - **Cambios:** rebranding completo a CeroNube, nuevo logotipo, portada rediseñada, navegación unificada, metadatos sociales, favicon, imagen Open Graph y modo oscuro universal con superficies neutrales.
 - **Variables modificadas:** ninguna.
 - **Validaciones:** lint, build, comprobación HTTP de rutas públicas, presencia universal del selector de tema y revisión de activos sociales.
 - **Despliegue:** automático mediante GitHub → Cloudflare Workers.
-- **Resultado:** pendiente de confirmación posterior al `push`.
-- **URL a verificar:** [https://herramientas.enrique-lazaro-dulktravor.workers.dev/](https://herramientas.enrique-lazaro-dulktravor.workers.dev/).
+- **Resultado:** correcto. Cloudflare publicó la nueva identidad y la URL pública devolvió la portada CeroNube.
+- **URL verificada:** [https://herramientas.enrique-lazaro-dulktravor.workers.dev/](https://herramientas.enrique-lazaro-dulktravor.workers.dev/).
+- **Verificación posterior:** portada, páginas institucionales, seis herramientas, `robots.txt`, `sitemap.xml` y `ads.txt` respondieron con HTTP 200; la portada publicada contiene la marca CeroNube y el selector de tema.
 - **Observaciones:** no se modificó la lógica interna de las seis herramientas ni se publicaron secretos o variables de entorno.
