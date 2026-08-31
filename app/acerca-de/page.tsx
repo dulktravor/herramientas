@@ -5,7 +5,7 @@ import { ContentPageShell } from '@/components/content-page-shell';
 
 export const metadata: Metadata = {
   title: 'Acerca de',
-  description: 'Principios de diseño y privacidad detrás de la colección Herramientas.',
+  description: 'Principios de diseño, utilidad y privacidad detrás de CeroNube.',
   alternates: { canonical: '/acerca-de' },
 };
 
@@ -19,12 +19,12 @@ export default function AboutPage() {
   return (
     <ContentPageShell
       eyebrow="El proyecto"
-      title="Utilidades que respetan tu tiempo y tus archivos"
-      description="Herramientas es una colección en crecimiento de pequeñas aplicaciones para resolver tareas habituales sin cuentas obligatorias ni flujos innecesarios."
+      title="El trabajo ocurre aquí. Tus archivos se quedan contigo."
+      description="CeroNube es una colección en crecimiento de utilidades para resolver tareas habituales sin cuentas obligatorias, cargas innecesarias ni recorridos artificiales."
     >
       <section>
         <h2>Por qué existe</h2>
-        <p>Muchas tareas sencillas terminan repartidas entre páginas cargadas de ventanas emergentes, límites poco claros y formularios de registro. Este proyecto reúne esas tareas en una experiencia coherente y explica qué ocurre con cada archivo.</p>
+        <p>Muchas tareas sencillas terminan repartidas entre páginas cargadas de ventanas emergentes, límites poco claros y formularios de registro. CeroNube reúne esas tareas en una experiencia coherente y explica qué ocurre con cada archivo.</p>
       </section>
       <section>
         <h2>Principios del producto</h2>

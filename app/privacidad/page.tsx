@@ -15,7 +15,7 @@ export default function PrivacyPage() {
     <ContentPageShell
       eyebrow="Transparencia"
       title="Política de privacidad"
-      description="Esta página explica qué ocurre con tus archivos y qué servicios opcionales pueden activarse al utilizar Herramientas."
+      description="Esta página explica qué ocurre con tus archivos y qué servicios opcionales pueden activarse al utilizar CeroNube."
     >
       <section>
         <h2>Procesamiento de archivos</h2>

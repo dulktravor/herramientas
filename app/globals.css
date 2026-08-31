@@ -53,24 +53,24 @@ body {
 }
 
 :root {
-  --background: oklch(0.98 0.008 142);
-  --foreground: oklch(0.23 0.025 145);
-  --card: oklch(0.995 0.003 142);
-  --card-foreground: oklch(0.23 0.025 145);
-  --popover: oklch(0.995 0.003 142);
-  --popover-foreground: oklch(0.23 0.025 145);
-  --primary: oklch(0.47 0.12 151);
-  --primary-foreground: oklch(0.985 0.008 145);
-  --secondary: oklch(0.95 0.025 145);
-  --secondary-foreground: oklch(0.34 0.065 149);
-  --muted: oklch(0.95 0.012 145);
-  --muted-foreground: oklch(0.5 0.025 147);
-  --accent: oklch(0.93 0.09 117);
-  --accent-foreground: oklch(0.28 0.055 137);
+  --background: #f8f3e9;
+  --foreground: #0a383b;
+  --card: #fffdf8;
+  --card-foreground: #0a383b;
+  --popover: #fffdf8;
+  --popover-foreground: #0a383b;
+  --primary: #08666a;
+  --primary-foreground: #fffaf1;
+  --secondary: #dff4f1;
+  --secondary-foreground: #083f43;
+  --muted: #eee8dc;
+  --muted-foreground: #5d6f6c;
+  --accent: #ffe1ca;
+  --accent-foreground: #713915;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.88 0.018 145);
-  --input: oklch(0.88 0.018 145);
-  --ring: oklch(0.53 0.12 151);
+  --border: #d8ded6;
+  --input: #cbd7d2;
+  --ring: #1ec8c8;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -88,45 +88,51 @@ body {
 }
 
 .dark {
-  --background: oklch(0.18 0.015 145);
-  --foreground: oklch(0.95 0.015 145);
-  --card: oklch(0.22 0.018 145);
-  --card-foreground: oklch(0.95 0.015 145);
-  --popover: oklch(0.22 0.018 145);
-  --popover-foreground: oklch(0.95 0.015 145);
-  --primary: oklch(0.73 0.13 150);
-  --primary-foreground: oklch(0.2 0.035 145);
-  --secondary: oklch(0.27 0.03 145);
-  --secondary-foreground: oklch(0.9 0.02 145);
-  --muted: oklch(0.27 0.018 145);
-  --muted-foreground: oklch(0.72 0.025 145);
-  --accent: oklch(0.4 0.07 119);
-  --accent-foreground: oklch(0.94 0.035 118);
+  --background: #090c10;
+  --foreground: #f1ede5;
+  --card: #12171e;
+  --card-foreground: #f1ede5;
+  --popover: #141a22;
+  --popover-foreground: #f1ede5;
+  --primary: #4bd8d3;
+  --primary-foreground: #071012;
+  --secondary: #1a222b;
+  --secondary-foreground: #d7f6f3;
+  --muted: #171d25;
+  --muted-foreground: #9aa5af;
+  --accent: #33241c;
+  --accent-foreground: #ffc79f;
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --border: #29323d;
+  --input: #343e4a;
+  --ring: #1ec8c8;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar: #10151c;
+  --sidebar-foreground: #f1ede5;
+  --sidebar-primary: #4bd8d3;
+  --sidebar-primary-foreground: #071012;
+  --sidebar-accent: #1a222b;
+  --sidebar-accent-foreground: #f1ede5;
+  --sidebar-border: #29323d;
+  --sidebar-ring: #4bd8d3;
 }
 
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
 }
 
 body {
   min-width: 320px;
+  transition: background-color 180ms ease, color 180ms ease;
 }
 
 ::selection {
@@ -142,9 +148,19 @@ body {
   height: 32rem;
   transform: translateX(-50%);
   border-radius: 999px;
-  background: radial-gradient(circle, color-mix(in oklch, var(--accent) 72%, transparent) 0%, transparent 70%);
+  background: radial-gradient(circle, color-mix(in oklch, #1ec8c8 26%, transparent) 0%, color-mix(in oklch, #ff8a3d 12%, transparent) 48%, transparent 72%);
   filter: blur(18px);
   pointer-events: none;
+}
+
+.dark .hero-glow {
+  background: radial-gradient(circle, rgb(75 216 211 / 10%) 0%, rgb(255 138 61 / 4%) 42%, transparent 70%);
+  filter: blur(28px);
+}
+
+.brand-grid {
+  background-image: radial-gradient(circle, color-mix(in oklch, var(--primary) 24%, transparent) 1.2px, transparent 1.2px);
+  background-size: 18px 18px;
 }
 
 .tool-card {

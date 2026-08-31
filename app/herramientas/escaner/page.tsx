@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   title: 'Escáner a PDF',
   description: 'Mejora fotografías de documentos y crea un PDF ordenado directamente en tu navegador.',
   alternates: { canonical: '/herramientas/escaner' },
+  openGraph: { title: 'Escáner a PDF | CeroNube', description: 'Convierte fotos de documentos en un PDF limpio sin subirlas.', images: [] },
+  twitter: { title: 'Escáner a PDF | CeroNube', description: 'Convierte fotos de documentos en un PDF limpio sin subirlas.', images: [] },
 };
 
 export default function ScannerPage() {

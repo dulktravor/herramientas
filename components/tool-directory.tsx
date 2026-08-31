@@ -98,6 +98,18 @@ const categories = [
   { id: 'datos', label: 'Datos' },
 ] as const;
 
+const categoryLabels = {
+  imagenes: 'Imagen',
+  pdf: 'PDF',
+  datos: 'Datos',
+} as const;
+
+const categoryStyles = {
+  imagenes: 'bg-[#dff4f1] text-[#08666a] dark:bg-[#17272b] dark:text-[#66e1dc]',
+  pdf: 'bg-[#ffe1ca] text-[#713915] dark:bg-[#30231d] dark:text-[#ffb27e]',
+  datos: 'bg-[#083f43] text-[#f4ead7] dark:bg-[#202731] dark:text-[#f1ede5]',
+} as const;
+
 export function ToolDirectory() {
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState<(typeof categories)[number]['id']>('todas');
@@ -129,7 +141,7 @@ export function ToolDirectory() {
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="¿Qué necesitas hacer? Ejemplo: reducir una foto"
-            className="h-14 rounded-2xl bg-card pl-12 pr-4 text-base shadow-[0_16px_50px_color-mix(in_oklch,var(--foreground)_7%,transparent)] md:text-base"
+            className="h-14 rounded-2xl border-primary/15 bg-card pl-12 pr-4 text-base shadow-[0_16px_50px_color-mix(in_oklch,var(--foreground)_7%,transparent)] focus-visible:border-primary md:text-base"
           />
         </div>
         <div className="mt-4 flex flex-wrap justify-center gap-2" aria-label="Filtrar herramientas">
@@ -139,7 +151,7 @@ export function ToolDirectory() {
               type="button"
               aria-pressed={category === item.id}
               onClick={() => setCategory(item.id)}
-              className="min-h-10 rounded-full border border-border bg-background px-4 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground aria-pressed:border-primary aria-pressed:bg-secondary aria-pressed:text-primary"
+              className="min-h-10 rounded-full border border-border bg-background px-4 text-sm font-medium text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground aria-pressed:border-primary aria-pressed:bg-primary aria-pressed:text-primary-foreground"
             >
               {item.label}
             </button>
@@ -149,9 +161,9 @@ export function ToolDirectory() {
 
       <div className="mt-12 flex items-end justify-between gap-4">
         <div>
-          <p className="text-sm font-medium text-primary">Colección inicial</p>
+          <p className="text-sm font-medium text-primary">Trabaja sin subir</p>
           <h2 className="mt-1 text-2xl font-semibold tracking-tight sm:text-3xl">
-            Herramientas destacadas
+            Elige qué necesitas resolver
           </h2>
         </div>
         <p className="text-sm text-muted-foreground" aria-live="polite">
@@ -164,21 +176,26 @@ export function ToolDirectory() {
           {filteredTools.map((tool) => {
             const Icon = tool.icon;
             const content = (
-              <Card
-                className="min-h-60 gap-0 border-transparent py-0 ring-1 ring-foreground/10 transition-[transform,box-shadow] duration-200 hover:-translate-y-1 hover:shadow-[0_18px_42px_color-mix(in_oklch,var(--foreground)_8%,transparent)]"
-              >
+              <Card className="group relative min-h-64 gap-0 overflow-hidden border-transparent py-0 ring-1 ring-foreground/10 transition-[transform,box-shadow,ring-color] duration-200 hover:-translate-y-1 hover:shadow-[0_18px_42px_color-mix(in_oklch,var(--foreground)_9%,transparent)] hover:ring-primary/30">
+                <span className="absolute inset-x-0 top-0 h-1 bg-primary opacity-0 transition-opacity group-hover:opacity-100" aria-hidden="true" />
                 <CardHeader className="px-6 pt-6">
-                  <div className="mb-5 grid size-11 place-items-center rounded-xl bg-secondary text-primary">
-                    <Icon className="size-5" aria-hidden="true" />
+                  <div className="mb-5 flex items-center justify-between">
+                    <div className={`grid size-11 place-items-center rounded-xl ${categoryStyles[tool.category]}`}>
+                      <Icon className="size-5" aria-hidden="true" />
+                    </div>
+                    <span className="text-[0.68rem] font-semibold uppercase tracking-[0.13em] text-muted-foreground">
+                      {categoryLabels[tool.category]}
+                    </span>
                   </div>
                   <CardTitle className="text-lg">{tool.name}</CardTitle>
                   <CardDescription className="mt-1 leading-6">{tool.description}</CardDescription>
                 </CardHeader>
-                <CardContent className="mt-auto px-6 pb-6 pt-5">
-                  <Badge variant={tool.stage === 'Disponible' ? 'secondary' : 'outline'}>
-                    {tool.stage}
+                <CardContent className="mt-auto flex items-center justify-between px-6 pb-6 pt-5">
+                  <Badge variant={tool.stage === 'Disponible' ? 'secondary' : 'outline'} className="border border-primary/10">
+                    Se procesa aquí
                     {tool.href ? <ArrowUpRight aria-hidden="true" /> : null}
                   </Badge>
+                  <span className="text-xs text-muted-foreground">Sin registro</span>
                 </CardContent>
               </Card>
             );

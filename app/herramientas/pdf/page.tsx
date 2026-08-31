@@ -7,8 +7,8 @@ export const metadata: Metadata = {
   title: 'Organizar PDF',
   description: 'Une, reordena, gira, elimina y separa páginas PDF directamente en tu navegador.',
   alternates: { canonical: '/herramientas/pdf' },
-  openGraph: { images: [] },
-  twitter: { images: [] },
+  openGraph: { title: 'Organizar PDF | CeroNube', description: 'Une, reordena y separa páginas PDF sin subir tus documentos.', images: [] },
+  twitter: { title: 'Organizar PDF | CeroNube', description: 'Une, reordena y separa páginas PDF sin subir tus documentos.', images: [] },
 };
 
 export default function PdfOrganizerPage() {

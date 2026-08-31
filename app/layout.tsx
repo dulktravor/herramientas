@@ -2,8 +2,21 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 
 import { ConsentProvider } from '@/components/consent-provider';
-import { siteDescription, siteUrl } from '@/lib/site';
+import { siteDescription, siteName, siteTagline, siteUrl } from '@/lib/site';
 import './globals.css';
+
+const themeScript = `
+  (() => {
+    try {
+      const savedTheme = window.localStorage.getItem('ceronube-theme');
+      const useDarkTheme = savedTheme
+        ? savedTheme === 'dark'
+        : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.classList.toggle('dark', useDarkTheme);
+      document.documentElement.style.colorScheme = useDarkTheme ? 'dark' : 'light';
+    } catch {}
+  })();
+`;
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -17,10 +30,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  applicationName: 'Herramientas',
+  applicationName: siteName,
   title: {
-    default: 'Herramientas — utilidades rápidas y privadas',
-    template: '%s | Herramientas',
+    default: `${siteName} — ${siteTagline}`,
+    template: `%s | ${siteName}`,
   },
   description: siteDescription,
   alternates: { canonical: '/' },
@@ -31,8 +44,8 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
   },
   openGraph: {
-    title: 'Herramientas',
-    description: 'Utilidades rápidas y privadas para tus archivos.',
+    title: `${siteName} — ${siteTagline}`,
+    description: siteDescription,
     type: 'website',
     locale: 'es_CO',
     images: [
@@ -40,14 +53,14 @@ export const metadata: Metadata = {
         url: '/og.png',
         width: 1733,
         height: 917,
-        alt: 'Herramientas — utilidades rápidas y privadas para tus archivos',
+        alt: 'CeroNube — Resuelve aquí. No subas nada.',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Herramientas',
-    description: 'Utilidades rápidas y privadas para tus archivos.',
+    title: `${siteName} — ${siteTagline}`,
+    description: siteDescription,
     images: ['/og.png'],
   },
   ...(process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID
@@ -61,7 +74,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="es" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ConsentProvider>{children}</ConsentProvider>
       </body>

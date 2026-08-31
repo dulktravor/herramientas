@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-labelledby="title">
+  <title id="title">CeroNube</title>
   <rect width="48" height="48" rx="15" fill="#083F43"/>
   <path d="M16.5 12.5h15a5 5 0 0 1 5 5v13a5 5 0 0 1-5 5h-15a5 5 0 0 1-5-5v-13a5 5 0 0 1 5-5Z" fill="none" stroke="#F4EAD7" stroke-width="4"/>
   <circle cx="17" cy="18" r="1.6" fill="#FF8A3D"/>

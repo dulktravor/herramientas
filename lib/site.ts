@@ -1,8 +1,12 @@
 export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL
   ?? 'https://herramientas.enrique-lazaro-dulktravor.workers.dev').replace(/\/$/, '');
 
+export const siteName = 'CeroNube';
+
+export const siteTagline = 'Resuelve aquí. No subas nada.';
+
 export const siteDescription =
-  'Herramientas gratuitas para imágenes, PDF y datos que funcionan directamente en tu navegador.';
+  'Utilidades privadas para imágenes, PDF y datos que procesan tus archivos directamente en el navegador.';
 
 export const publicTools = [
   {

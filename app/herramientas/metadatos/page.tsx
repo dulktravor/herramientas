@@ -7,8 +7,8 @@ export const metadata: Metadata = {
   title: 'Limpiar metadatos',
   description: 'Inspecciona y elimina datos EXIF, ubicación GPS y detalles ocultos de tus fotografías.',
   alternates: { canonical: '/herramientas/metadatos' },
-  openGraph: { images: [] },
-  twitter: { images: [] },
+  openGraph: { title: 'Limpiar metadatos | CeroNube', description: 'Inspecciona y elimina EXIF y ubicación sin subir tus fotografías.', images: [] },
+  twitter: { title: 'Limpiar metadatos | CeroNube', description: 'Inspecciona y elimina EXIF y ubicación sin subir tus fotografías.', images: [] },
 };
 
 export default function MetadataCleanerPage() {
