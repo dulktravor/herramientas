@@ -6,9 +6,14 @@ export const siteName = 'CeroNube';
 export const siteTagline = 'Resuelve aquí. No subas nada.';
 
 export const siteDescription =
-  'Utilidades privadas para imágenes, PDF y datos que procesan tus archivos directamente en el navegador.';
+  'Utilidades privadas para imágenes, PDF, audio y datos que procesan tus archivos directamente en el navegador.';
 
 export const publicTools = [
+  {
+    name: 'Estudio de audio',
+    description: 'Recorta, une, normaliza y ajusta archivos de audio en tu navegador.',
+    path: '/herramientas/audio',
+  },
   {
     name: 'Estudio de imágenes',
     description: 'Comprime, convierte y redimensiona imágenes en tu navegador.',

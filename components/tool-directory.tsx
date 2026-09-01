@@ -8,6 +8,7 @@ import {
   FileScan,
   Files,
   Images,
+  Music2,
   ScanText,
   Search,
   ShieldEllipsis,
@@ -27,7 +28,7 @@ import { Input } from '@/components/ui/input';
 type ToolItem = {
   name: string;
   description: string;
-  category: 'imagenes' | 'pdf' | 'datos';
+  category: 'imagenes' | 'pdf' | 'datos' | 'audio';
   keywords: string;
   icon: LucideIcon;
   stage: 'Disponible' | 'Siguiente etapa';
@@ -35,6 +36,15 @@ type ToolItem = {
 };
 
 const tools: ToolItem[] = [
+  {
+    name: 'Estudio de audio',
+    description: 'Recorta, une, normaliza y ajusta pistas desde el navegador.',
+    category: 'audio',
+    keywords: 'audio mp3 wav ogg flac aac m4a recortar unir volumen normalizar velocidad fundido',
+    icon: Music2,
+    stage: 'Disponible',
+    href: '/herramientas/audio',
+  },
   {
     name: 'Estudio de imágenes',
     description: 'Comprime, convierte y redimensiona varias imágenes a la vez.',
@@ -96,18 +106,21 @@ const categories = [
   { id: 'imagenes', label: 'Imágenes' },
   { id: 'pdf', label: 'PDF' },
   { id: 'datos', label: 'Datos' },
+  { id: 'audio', label: 'Audio' },
 ] as const;
 
 const categoryLabels = {
   imagenes: 'Imagen',
   pdf: 'PDF',
   datos: 'Datos',
+  audio: 'Audio',
 } as const;
 
 const categoryStyles = {
   imagenes: 'bg-[#dff4f1] text-[#08666a] dark:bg-[#17272b] dark:text-[#66e1dc]',
   pdf: 'bg-[#ffe1ca] text-[#713915] dark:bg-[#30231d] dark:text-[#ffb27e]',
   datos: 'bg-[#083f43] text-[#f4ead7] dark:bg-[#202731] dark:text-[#f1ede5]',
+  audio: 'bg-[#eee3ff] text-[#60309a] dark:bg-[#292033] dark:text-[#d7b5ff]',
 } as const;
 
 export function ToolDirectory() {
