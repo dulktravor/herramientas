@@ -385,3 +385,18 @@ La presencia de `.openai/hosting.json` no sustituye la infraestructura de produc
 - **URL verificada:** [https://herramientas.enrique-lazaro-dulktravor.workers.dev/](https://herramientas.enrique-lazaro-dulktravor.workers.dev/).
 - **Verificación posterior:** portada, páginas institucionales, seis herramientas, `robots.txt`, `sitemap.xml` y `ads.txt` respondieron con HTTP 200; la portada publicada contiene la marca CeroNube y el selector de tema.
 - **Observaciones:** no se modificó la lógica interna de las seis herramientas ni se publicaron secretos o variables de entorno.
+
+---
+
+## Versión: 2026-08-31 — Estudio de audio local
+
+- **Commit de producto:** `da78af1` (`feat: añadir estudio de audio local`).
+- **Tipo:** función, privacidad, accesibilidad y SEO.
+- **Cambios:** nueva herramienta para cargar, visualizar, recortar, reordenar, unir, normalizar y ajustar pistas de audio; permite modificar volumen, velocidad y fundidos, previsualizar el resultado y descargarlo como WAV sin enviar archivos al servidor. También se integró la categoría Audio en la portada, el directorio y el sitemap.
+- **Variables modificadas:** ninguna.
+- **Validaciones:** `npm run lint`, `npm run build`, `git diff --check`, carga y procesamiento de un WAV válido, rechazo de un archivo incompatible y comprobación HTTP de portada, herramienta, privacidad, `robots.txt`, `sitemap.xml` y `ads.txt`.
+- **Despliegue:** automático mediante GitHub → Cloudflare Workers.
+- **Resultado:** correcto. Las comprobaciones de Cloudflare Workers y Cloudflare Pages finalizaron satisfactoriamente para el commit de producto.
+- **URL verificada:** [https://herramientas.enrique-lazaro-dulktravor.workers.dev/herramientas/audio](https://herramientas.enrique-lazaro-dulktravor.workers.dev/herramientas/audio).
+- **Verificación posterior:** la ruta pública respondió con HTTP 200, mostró el Estudio de audio y procesó correctamente un WAV mono de prueba, generando una previsualización y un archivo WAV descargable.
+- **Observaciones:** esta primera versión utiliza Web Audio API y exporta WAV PCM de 16 bits; las conversiones avanzadas a otros formatos quedan pendientes de integrar mediante un motor opcional cargado bajo demanda.
