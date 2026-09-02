@@ -17,7 +17,7 @@ La referencia ejecutable del sistema está en `app/globals.css` y en los compone
 
 ### Propuesta de valor
 
-CeroNube reúne herramientas para imágenes, PDF, audio y datos que priorizan el procesamiento en el dispositivo. La experiencia debe comunicar tres ideas con rapidez:
+CeroNube reúne herramientas para imágenes, PDF, audio, vídeo, archivos comprimidos y datos que priorizan el procesamiento en el dispositivo. La experiencia debe comunicar tres ideas con rapidez:
 
 1. la tarea se puede completar sin crear una cuenta;
 2. el archivo permanece en el navegador siempre que la función lo permita;
@@ -136,6 +136,7 @@ Las categorías ayudan a reconocer herramientas, pero nunca sustituyen al nombre
 | Datos | fondo `#083F43`, texto `#F4EAD7` | fondo `#202731`, texto `#F1EDE5` |
 | Audio | fondo `#EEE3FF`, texto `#60309A` | fondo `#292033`, texto `#D7B5FF` |
 | Vídeo | fondo `#FEE2E2`, texto `#991B1B` | fondo `#331C20`, texto `#FCA5A5` |
+| Comprimidos | fondo `#FEF3C7`, texto `#92400E` | fondo `#332719`, texto `#FCD34D` |
 
 ### Reglas de contraste
 
@@ -403,7 +404,7 @@ La tarjeta social usa formato horizontal `1733 × 917`, el nombre CeroNube y la 
 Metadatos base:
 
 - título: `CeroNube — Resuelve aquí. No subas nada.`;
-- descripción: utilidades privadas para imágenes, PDF, audio y datos procesadas en el navegador;
+- descripción: utilidades privadas para imágenes, PDF, audio, vídeo, ZIP y datos procesadas en el navegador;
 - idioma y localización: español, `es_CO` donde corresponda;
 - imagen compartida: `/og.png` con texto alternativo específico.
 

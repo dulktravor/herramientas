@@ -1,27 +1,38 @@
-export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL
-  ?? 'https://herramientas.enrique-lazaro-dulktravor.workers.dev').replace(/\/$/, '');
+export const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  'https://herramientas.enrique-lazaro-dulktravor.workers.dev'
+).replace(/\/$/, '');
 
 export const siteName = 'CeroNube';
 
 export const siteTagline = 'Resuelve aquí. No subas nada.';
 
 export const siteDescription =
-  'Utilidades privadas para imágenes, PDF, vídeo, audio y datos que procesan tus archivos directamente en el navegador.';
+  'Utilidades privadas para imágenes, PDF, vídeo, audio, ZIP y datos que procesan tus archivos directamente en el navegador.';
 
 export const publicTools = [
   {
+    name: 'Gestor de archivos ZIP',
+    description:
+      'Crea, examina, modifica y extrae archivos ZIP en tu navegador.',
+    path: '/herramientas/zip',
+  },
+  {
     name: 'Taller de vídeo',
-    description: 'Recorta, ajusta aspecto, silencia, añade audio y convierte vídeos en tu navegador.',
+    description:
+      'Recorta, ajusta aspecto, silencia, añade audio y convierte vídeos en tu navegador.',
     path: '/herramientas/video',
   },
   {
     name: 'Estudio MIDI',
-    description: 'Toca, reproduce y edita música de piano y otros instrumentos en tu navegador.',
+    description:
+      'Toca, reproduce y edita música de piano y otros instrumentos en tu navegador.',
     path: '/herramientas/midi',
   },
   {
     name: 'Estudio de audio',
-    description: 'Recorta, une, normaliza y ajusta archivos de audio en tu navegador.',
+    description:
+      'Recorta, une, normaliza y ajusta archivos de audio en tu navegador.',
     path: '/herramientas/audio',
   },
   {

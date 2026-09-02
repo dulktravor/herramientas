@@ -6,6 +6,7 @@ import {
   Braces,
   ArrowUpRight,
   FileScan,
+  FileArchive,
   Files,
   Film,
   Images,
@@ -29,7 +30,7 @@ import { Input } from '@/components/ui/input';
 type ToolItem = {
   name: string;
   description: string;
-  category: 'imagenes' | 'pdf' | 'datos' | 'audio' | 'video';
+  category: 'imagenes' | 'pdf' | 'datos' | 'audio' | 'video' | 'comprimidos';
   keywords: string;
   icon: LucideIcon;
   stage: 'Disponible' | 'Siguiente etapa';
@@ -38,19 +39,34 @@ type ToolItem = {
 
 const tools: ToolItem[] = [
   {
+    name: 'Gestor de archivos ZIP',
+    description:
+      'Crea, examina, modifica y extrae archivos ZIP sin enviar su contenido.',
+    category: 'comprimidos',
+    keywords:
+      'zip archivo comprimido comprimir descomprimir extraer carpeta abrir examinar renombrar',
+    icon: FileArchive,
+    stage: 'Disponible',
+    href: '/herramientas/zip',
+  },
+  {
     name: 'Taller de vídeo',
-    description: 'Recorta, cambia relación de aspecto, añade subtítulos SRT/VTT, extrae audio y convierte a MP4, WebM o GIF.',
+    description:
+      'Recorta, cambia relación de aspecto, añade subtítulos SRT/VTT, extrae audio y convierte a MP4, WebM o GIF.',
     category: 'video',
-    keywords: 'video mp4 webm mov mkv avi recortar inicio fin aspecto resolucion gif animado silenciar subtitulos srt vtt audio mp3 wav ogg velocidad fps fotograma comprimir',
+    keywords:
+      'video mp4 webm mov mkv avi recortar inicio fin aspecto resolucion gif animado silenciar subtitulos srt vtt audio mp3 wav ogg velocidad fps fotograma comprimir',
     icon: Film,
     stage: 'Disponible',
     href: '/herramientas/video',
   },
   {
     name: 'Estudio MIDI',
-    description: 'Toca, reproduce y edita MIDI en un piano-roll con instrumentos virtuales.',
+    description:
+      'Toca, reproduce y edita MIDI en un piano-roll con instrumentos virtuales.',
     category: 'audio',
-    keywords: 'midi piano notas teclado instrumento sintetizador transcribir partitura editar reproducir',
+    keywords:
+      'midi piano notas teclado instrumento sintetizador transcribir partitura editar reproducir',
     icon: Music2,
     stage: 'Disponible',
     href: '/herramientas/midi',
@@ -59,7 +75,8 @@ const tools: ToolItem[] = [
     name: 'Estudio de audio',
     description: 'Recorta, une, normaliza y ajusta pistas desde el navegador.',
     category: 'audio',
-    keywords: 'audio mp3 wav ogg flac aac m4a recortar unir volumen normalizar velocidad fundido',
+    keywords:
+      'audio mp3 wav ogg flac aac m4a recortar unir volumen normalizar velocidad fundido',
     icon: Music2,
     stage: 'Disponible',
     href: '/herramientas/audio',
@@ -68,7 +85,8 @@ const tools: ToolItem[] = [
     name: 'Estudio de imágenes',
     description: 'Comprime, convierte y redimensiona varias imágenes a la vez.',
     category: 'imagenes',
-    keywords: 'jpg png webp avif comprimir convertir reducir redimensionar foto',
+    keywords:
+      'jpg png webp avif comprimir convertir reducir redimensionar foto',
     icon: Images,
     stage: 'Disponible',
     href: '/herramientas/imagenes',
@@ -84,7 +102,8 @@ const tools: ToolItem[] = [
   },
   {
     name: 'Limpiar metadatos',
-    description: 'Descubre y elimina GPS, dispositivo y datos ocultos de tus fotos.',
+    description:
+      'Descubre y elimina GPS, dispositivo y datos ocultos de tus fotos.',
     category: 'imagenes',
     keywords: 'exif gps privacidad limpiar borrar datos foto camara',
     icon: ShieldEllipsis,
@@ -93,7 +112,8 @@ const tools: ToolItem[] = [
   },
   {
     name: 'Imagen a texto',
-    description: 'Extrae texto editable de capturas y documentos fotografiados.',
+    description:
+      'Extrae texto editable de capturas y documentos fotografiados.',
     category: 'imagenes',
     keywords: 'ocr texto captura foto escaneo reconocer copiar',
     icon: ScanText,
@@ -122,6 +142,7 @@ const tools: ToolItem[] = [
 
 const categories = [
   { id: 'todas', label: 'Todas' },
+  { id: 'comprimidos', label: 'Comprimidos' },
   { id: 'video', label: 'Vídeo' },
   { id: 'audio', label: 'Audio' },
   { id: 'imagenes', label: 'Imágenes' },
@@ -130,6 +151,7 @@ const categories = [
 ] as const;
 
 const categoryLabels = {
+  comprimidos: 'Comprimidos',
   video: 'Vídeo',
   audio: 'Audio',
   imagenes: 'Imagen',
@@ -138,6 +160,8 @@ const categoryLabels = {
 } as const;
 
 const categoryStyles = {
+  comprimidos:
+    'bg-[#fef3c7] text-[#92400e] dark:bg-[#332719] dark:text-[#fcd34d]',
   video: 'bg-[#fee2e2] text-[#991b1b] dark:bg-[#331c20] dark:text-[#fca5a5]',
   audio: 'bg-[#eee3ff] text-[#60309a] dark:bg-[#292033] dark:text-[#d7b5ff]',
   imagenes: 'bg-[#dff4f1] text-[#08666a] dark:bg-[#17272b] dark:text-[#66e1dc]',
@@ -147,15 +171,23 @@ const categoryStyles = {
 
 export function ToolDirectory() {
   const [query, setQuery] = useState('');
-  const [category, setCategory] = useState<(typeof categories)[number]['id']>('todas');
+  const [category, setCategory] =
+    useState<(typeof categories)[number]['id']>('todas');
 
   const filteredTools = useMemo(() => {
     const normalizedQuery = query.trim().toLocaleLowerCase('es');
 
     return tools.filter((tool) => {
-      const matchesCategory = category === 'todas' || tool.category === category;
-      const searchableText = `${tool.name} ${tool.description} ${tool.keywords}`.toLocaleLowerCase('es');
-      return matchesCategory && (!normalizedQuery || searchableText.includes(normalizedQuery));
+      const matchesCategory =
+        category === 'todas' || tool.category === category;
+      const searchableText =
+        `${tool.name} ${tool.description} ${tool.keywords}`.toLocaleLowerCase(
+          'es',
+        );
+      return (
+        matchesCategory &&
+        (!normalizedQuery || searchableText.includes(normalizedQuery))
+      );
     });
   }, [category, query]);
 
@@ -179,7 +211,10 @@ export function ToolDirectory() {
             className="h-14 rounded-2xl border-primary/15 bg-card pl-12 pr-4 text-base shadow-[0_16px_50px_color-mix(in_oklch,var(--foreground)_7%,transparent)] focus-visible:border-primary md:text-base"
           />
         </div>
-        <div className="mt-4 flex flex-wrap justify-center gap-2" aria-label="Filtrar herramientas">
+        <div
+          className="mt-4 flex flex-wrap justify-center gap-2"
+          aria-label="Filtrar herramientas"
+        >
           {categories.map((item) => (
             <button
               key={item.id}
@@ -202,7 +237,8 @@ export function ToolDirectory() {
           </h2>
         </div>
         <p className="text-sm text-muted-foreground" aria-live="polite">
-          {filteredTools.length} {filteredTools.length === 1 ? 'resultado' : 'resultados'}
+          {filteredTools.length}{' '}
+          {filteredTools.length === 1 ? 'resultado' : 'resultados'}
         </p>
       </div>
 
@@ -212,10 +248,15 @@ export function ToolDirectory() {
             const Icon = tool.icon;
             const content = (
               <Card className="group relative min-h-64 gap-0 overflow-hidden border-transparent py-0 ring-1 ring-foreground/10 transition-[transform,box-shadow,ring-color] duration-200 hover:-translate-y-1 hover:shadow-[0_18px_42px_color-mix(in_oklch,var(--foreground)_9%,transparent)] hover:ring-primary/30">
-                <span className="absolute inset-x-0 top-0 h-1 bg-primary opacity-0 transition-opacity group-hover:opacity-100" aria-hidden="true" />
+                <span
+                  className="absolute inset-x-0 top-0 h-1 bg-primary opacity-0 transition-opacity group-hover:opacity-100"
+                  aria-hidden="true"
+                />
                 <CardHeader className="px-6 pt-6">
                   <div className="mb-5 flex items-center justify-between">
-                    <div className={`grid size-11 place-items-center rounded-xl ${categoryStyles[tool.category]}`}>
+                    <div
+                      className={`grid size-11 place-items-center rounded-xl ${categoryStyles[tool.category]}`}
+                    >
                       <Icon className="size-5" aria-hidden="true" />
                     </div>
                     <span className="text-[0.68rem] font-semibold uppercase tracking-[0.13em] text-muted-foreground">
@@ -223,19 +264,32 @@ export function ToolDirectory() {
                     </span>
                   </div>
                   <CardTitle className="text-lg">{tool.name}</CardTitle>
-                  <CardDescription className="mt-1 leading-6">{tool.description}</CardDescription>
+                  <CardDescription className="mt-1 leading-6">
+                    {tool.description}
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="mt-auto flex items-center justify-between px-6 pb-6 pt-5">
-                  <Badge variant={tool.stage === 'Disponible' ? 'secondary' : 'outline'} className="border border-primary/10">
+                  <Badge
+                    variant={
+                      tool.stage === 'Disponible' ? 'secondary' : 'outline'
+                    }
+                    className="border border-primary/10"
+                  >
                     Se procesa aquí
                     {tool.href ? <ArrowUpRight aria-hidden="true" /> : null}
                   </Badge>
-                  <span className="text-xs text-muted-foreground">Sin registro</span>
+                  <span className="text-xs text-muted-foreground">
+                    Sin registro
+                  </span>
                 </CardContent>
               </Card>
             );
             return tool.href ? (
-              <Link key={tool.name} href={tool.href} className="rounded-xl focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50">
+              <Link
+                key={tool.name}
+                href={tool.href}
+                className="rounded-xl focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+              >
                 {content}
               </Link>
             ) : (
@@ -245,7 +299,10 @@ export function ToolDirectory() {
         </div>
       ) : (
         <div className="mt-6 rounded-2xl border border-dashed border-border px-6 py-14 text-center">
-          <Search className="mx-auto size-8 text-muted-foreground" aria-hidden="true" />
+          <Search
+            className="mx-auto size-8 text-muted-foreground"
+            aria-hidden="true"
+          />
           <h3 className="mt-4 font-medium">No encontramos esa herramienta</h3>
           <p className="mt-1 text-sm text-muted-foreground">
             Prueba con “PDF”, “imagen”, “texto” o “datos”.
