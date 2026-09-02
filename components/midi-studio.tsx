@@ -264,7 +264,7 @@ export function MidiStudio() {
       <input ref={audioInputRef} type="file" accept="audio/*,.wav,.mp3,.m4a,.ogg,.flac" className="hidden" onChange={(event) => { const file = event.target.files?.[0] ?? null; event.target.value = ''; setAudioFile(file); if (file) { setModelStatus('idle'); setModelProgress(0); setModelMessage(`${file.name} listo para transcribir.`); } }} />
       <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as string)}>
         <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
-          <TabsList className="h-10 rounded-xl bg-muted p-1"><TabsTrigger value="editor" className="h-8 px-4"><SlidersHorizontal /> Editor MIDI</TabsTrigger><TabsTrigger value="transcription" className="h-8 px-4"><Sparkles /> Transcripción IA</TabsTrigger></TabsList>
+          <TabsList className="h-10 rounded-xl bg-muted p-1"><TabsTrigger value="editor" className="h-8 px-4"><SlidersHorizontal /> Editor MIDI</TabsTrigger><TabsTrigger value="transcription" className="hidden" aria-hidden="true" tabIndex={-1}><Sparkles /> Transcripción IA</TabsTrigger></TabsList>
           <p className="text-xs text-muted-foreground">Atajos: A–; toca · Espacio reproduce · Supr elimina</p>
         </div>
         <TabsContent value="editor" className="mt-4 space-y-4">
@@ -314,7 +314,7 @@ export function MidiStudio() {
           </section>
           {notice ? <Alert className="border-primary/15 bg-secondary/55"><Volume2 /><AlertTitle>Estado del proyecto</AlertTitle><AlertDescription>{notice}</AlertDescription><Button size="icon-sm" variant="ghost" className="absolute right-2 top-2" onClick={() => setNotice(null)} aria-label="Cerrar aviso"><X /></Button></Alert> : null}
         </TabsContent>
-        <TabsContent value="transcription" className="mt-4">
+        <TabsContent value="transcription" className="hidden" aria-hidden="true">
           <section className="overflow-hidden rounded-3xl border border-border bg-card shadow-sm">
             <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
               <div className="p-6 sm:p-8">

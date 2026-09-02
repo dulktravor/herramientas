@@ -25,7 +25,7 @@ export default function MidiStudioPage() {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
     name: 'Estudio MIDI',
-    description: 'Editor MIDI local con piano virtual y transcripción de piano asistida por IA.',
+    description: 'Editor MIDI local con piano virtual, varias pistas y diferentes instrumentos.',
     url: absoluteUrl('/herramientas/midi'),
     applicationCategory: 'MultimediaApplication',
     operatingSystem: 'Cualquier sistema con un navegador compatible',

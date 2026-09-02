@@ -16,7 +16,7 @@ export const publicTools = [
   },
   {
     name: 'Estudio MIDI',
-    description: 'Toca, reproduce, edita y transcribe música de piano en tu navegador.',
+    description: 'Toca, reproduce y edita música de piano y otros instrumentos en tu navegador.',
     path: '/herramientas/midi',
   },
   {
