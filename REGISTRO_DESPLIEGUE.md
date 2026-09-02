@@ -443,3 +443,18 @@ La presencia de `.openai/hosting.json` no sustituye la infraestructura de produc
 - **Resultado:** correcto. Cloudflare compila y publica el Worker con Static Assets.
 - **URL verificada:** [https://herramientas.enrique-lazaro-dulktravor.workers.dev/herramientas/video](https://herramientas.enrique-lazaro-dulktravor.workers.dev/herramientas/video).
 - **Observaciones:** el motor FFmpeg WASM se descarga bajo demanda desde jsDelivr y se ejecuta localmente en memoria del navegador; los archivos del usuario nunca salen del dispositivo.
+
+---
+
+## Versión: 2026-09-02 — Gestor de archivos ZIP local
+
+- **Commit de producto:** `e55c597` (`feat: añadir gestor de archivos ZIP`).
+- **Tipo:** función, privacidad, seguridad, accesibilidad y SEO.
+- **Cambios:** nueva herramienta para crear ZIP a partir de archivos o carpetas, elegir el nivel de compresión, abrir archivos ZIP, consultar su estructura y tamaños, seleccionar contenido, previsualizar archivos de texto pequeños, renombrar o eliminar entradas, extraer archivos y descargar una copia modificada. Se añadieron detección de nombres duplicados, normalización de rutas absolutas o con `../`, límites visibles de memoria y cantidad de entradas, progreso y cancelación. La categoría Comprimidos quedó integrada en la portada, el directorio, la búsqueda, el sitemap y los datos estructurados.
+- **Variables modificadas:** ninguna.
+- **Validaciones:** `npm run lint`, `npx tsc --noEmit`, `npm run build`, `git diff --check`, prueba programática de creación y lectura de un ZIP con carpetas y ruta peligrosa, y comprobación HTTP de portada, herramienta ZIP, privacidad, `robots.txt`, `sitemap.xml` y `ads.txt`.
+- **Despliegue:** automático mediante GitHub → Cloudflare Workers.
+- **Resultado:** correcto. La integración publicó el commit de producto y la nueva ruta respondió con HTTP 200.
+- **URL verificada:** [https://herramientas.enrique-lazaro-dulktravor.workers.dev/herramientas/zip](https://herramientas.enrique-lazaro-dulktravor.workers.dev/herramientas/zip).
+- **Verificación posterior:** la ruta pública mostró el Gestor de archivos ZIP y la declaración de procesamiento local; portada, privacidad y archivos públicos de SEO continuaron respondiendo correctamente.
+- **Observaciones:** la primera versión admite ZIP de hasta 200 MB, 500 MB descomprimidos, 5.000 entradas y vistas previas de texto de hasta 256 KB. Los ZIP cifrados, TAR, TAR.GZ y 7Z quedan fuera de este alcance.
