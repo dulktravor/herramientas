@@ -37,6 +37,15 @@ type ToolItem = {
 
 const tools: ToolItem[] = [
   {
+    name: 'Estudio MIDI',
+    description: 'Toca, reproduce y edita MIDI en un piano-roll con instrumentos virtuales.',
+    category: 'audio',
+    keywords: 'midi piano notas teclado instrumento sintetizador transcribir partitura editar reproducir',
+    icon: Music2,
+    stage: 'Disponible',
+    href: '/herramientas/midi',
+  },
+  {
     name: 'Estudio de audio',
     description: 'Recorta, une, normaliza y ajusta pistas desde el navegador.',
     category: 'audio',
