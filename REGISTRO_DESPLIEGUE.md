@@ -418,6 +418,20 @@ La presencia de `.openai/hosting.json` no sustituye la infraestructura de produc
 
 ---
 
+## Versión: 2026-09-02 — ocultación temporal de la transcripción MIDI
+
+- **Commits de producto:** `4010f4e` (`fix: ocultar transcripción IA del estudio MIDI`) y `e5d6354` (`fix: retirar acceso a la transcripción MIDI`).
+- **Tipo:** corrección, accesibilidad y contenido.
+- **Cambios:** se ocultó temporalmente la transcripción asistida por IA del Estudio MIDI, se retiraron su pestaña y panel del DOM y se actualizaron la descripción pública y los datos estructurados para presentar únicamente las funciones disponibles del editor MIDI.
+- **Variables modificadas:** ninguna.
+- **Validaciones:** `npm run lint`, `npm run build`, `git diff --check`, comprobación del DOM publicado y revisión HTTP de portada, herramienta MIDI, privacidad, `robots.txt`, `sitemap.xml` y `ads.txt`.
+- **Despliegue:** automático mediante GitHub → Cloudflare Workers.
+- **Resultado:** correcto. El editor MIDI permanece disponible y la transcripción IA ya no aparece visualmente, en navegación por teclado ni en el árbol de accesibilidad.
+- **URL verificada:** [https://herramientas.enrique-lazaro-dulktravor.workers.dev/herramientas/midi](https://herramientas.enrique-lazaro-dulktravor.workers.dev/herramientas/midi).
+- **Observaciones:** la implementación interna se conserva desactivada para facilitar una reparación y reactivación futura.
+
+---
+
 ## Versión: 2026-09-01 — Taller de vídeo con FFmpeg WASM
 
 - **Commit de producto:** `feat: implementar taller de video con motor FFmpeg WASM local`
@@ -429,4 +443,3 @@ La presencia de `.openai/hosting.json` no sustituye la infraestructura de produc
 - **Resultado:** correcto. Cloudflare compila y publica el Worker con Static Assets.
 - **URL verificada:** [https://herramientas.enrique-lazaro-dulktravor.workers.dev/herramientas/video](https://herramientas.enrique-lazaro-dulktravor.workers.dev/herramientas/video).
 - **Observaciones:** el motor FFmpeg WASM se descarga bajo demanda desde jsDelivr y se ejecuta localmente en memoria del navegador; los archivos del usuario nunca salen del dispositivo.
-
