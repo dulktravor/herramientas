@@ -75,6 +75,7 @@ const MAX_PITCH = 84;
 const MODEL_URL = 'https://huggingface.co/LanOss/mobimml-piano-transcription/resolve/main/piano_transcription.onnx';
 const ORT_SCRIPT_URL = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.29.0/dist/ort.min.js';
 const ORT_WASM_PATH = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.29.0/dist/';
+const TRANSCRIPTION_VISIBLE = false;
 const MODEL_SAMPLE_RATE = 16_000;
 const MODEL_WINDOW = 160_000;
 const TRACK_COLORS = ['#8d63ff', '#32c7b5', '#ff8c61', '#58a7ff', '#e46fc5', '#d6ad3b'];
@@ -264,7 +265,7 @@ export function MidiStudio() {
       <input ref={audioInputRef} type="file" accept="audio/*,.wav,.mp3,.m4a,.ogg,.flac" className="hidden" onChange={(event) => { const file = event.target.files?.[0] ?? null; event.target.value = ''; setAudioFile(file); if (file) { setModelStatus('idle'); setModelProgress(0); setModelMessage(`${file.name} listo para transcribir.`); } }} />
       <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as string)}>
         <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
-          <TabsList className="h-10 rounded-xl bg-muted p-1"><TabsTrigger value="editor" className="h-8 px-4"><SlidersHorizontal /> Editor MIDI</TabsTrigger><TabsTrigger value="transcription" className="hidden" aria-hidden="true" tabIndex={-1}><Sparkles /> Transcripción IA</TabsTrigger></TabsList>
+          <TabsList className="h-10 rounded-xl bg-muted p-1"><TabsTrigger value="editor" className="h-8 px-4"><SlidersHorizontal /> Editor MIDI</TabsTrigger>{TRANSCRIPTION_VISIBLE ? <TabsTrigger value="transcription" className="h-8 px-4"><Sparkles /> Transcripción IA</TabsTrigger> : null}</TabsList>
           <p className="text-xs text-muted-foreground">Atajos: A–; toca · Espacio reproduce · Supr elimina</p>
         </div>
         <TabsContent value="editor" className="mt-4 space-y-4">
@@ -314,7 +315,7 @@ export function MidiStudio() {
           </section>
           {notice ? <Alert className="border-primary/15 bg-secondary/55"><Volume2 /><AlertTitle>Estado del proyecto</AlertTitle><AlertDescription>{notice}</AlertDescription><Button size="icon-sm" variant="ghost" className="absolute right-2 top-2" onClick={() => setNotice(null)} aria-label="Cerrar aviso"><X /></Button></Alert> : null}
         </TabsContent>
-        <TabsContent value="transcription" className="hidden" aria-hidden="true">
+        {TRANSCRIPTION_VISIBLE ? <TabsContent value="transcription" className="mt-4">
           <section className="overflow-hidden rounded-3xl border border-border bg-card shadow-sm">
             <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
               <div className="p-6 sm:p-8">
@@ -330,7 +331,7 @@ export function MidiStudio() {
               </div>
             </div>
           </section>
-        </TabsContent>
+        </TabsContent> : null}
       </Tabs>
       <section className="grid gap-3 sm:grid-cols-3"><div className="rounded-2xl border border-border bg-card p-4"><Save className="size-5 text-primary" /><h3 className="mt-3 font-semibold">MIDI estándar</h3><p className="mt-1 text-sm leading-6 text-muted-foreground">Importa y exporta archivos .mid con varias pistas.</p></div><div className="rounded-2xl border border-border bg-card p-4"><Keyboard className="size-5 text-primary" /><h3 className="mt-3 font-semibold">Piano tocable</h3><p className="mt-1 text-sm leading-6 text-muted-foreground">Ratón, pantalla táctil o teclado físico, con grabación directa.</p></div><div className="rounded-2xl border border-border bg-card p-4"><Eraser className="size-5 text-primary" /><h3 className="mt-3 font-semibold">Edición nota a nota</h3><p className="mt-1 text-sm leading-6 text-muted-foreground">Mueve, cuantiza, afina y ajusta duración y velocidad.</p></div></section>
     </div>
