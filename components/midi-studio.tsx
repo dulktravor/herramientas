@@ -57,11 +57,24 @@ type Voice = { sources: OscillatorNode[]; gain: GainNode };
 type HistoryState = { tracks: Track[]; selectedTrackId: string };
 type DragState = { noteId: string; trackId: string; startX: number; startY: number; originalTime: number; originalMidi: number };
 type ModelStatus = 'idle' | 'loading' | 'running' | 'done' | 'error';
+type OrtTensor = { data: ArrayLike<number>; dims: readonly number[] };
+type OrtSession = { run: (feeds: Record<string, OrtTensor>) => Promise<Record<string, OrtTensor>>; release: () => Promise<void> | void };
+type OrtRuntime = {
+  env: { wasm: { wasmPaths: string; numThreads: number } };
+  Tensor: new (type: 'float32', data: Float32Array, dims: readonly number[]) => OrtTensor;
+  InferenceSession: { create: (url: string, options: Record<string, unknown>) => Promise<OrtSession> };
+};
+
+declare global {
+  interface Window { ort?: OrtRuntime }
+}
 
 const ROW_HEIGHT = 22;
 const MIN_PITCH = 36;
 const MAX_PITCH = 84;
 const MODEL_URL = 'https://huggingface.co/LanOss/mobimml-piano-transcription/resolve/main/piano_transcription.onnx';
+const ORT_SCRIPT_URL = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.29.0/dist/ort.min.js';
+const ORT_WASM_PATH = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.29.0/dist/';
 const MODEL_SAMPLE_RATE = 16_000;
 const MODEL_WINDOW = 160_000;
 const TRACK_COLORS = ['#8d63ff', '#32c7b5', '#ff8c61', '#58a7ff', '#e46fc5', '#d6ad3b'];
@@ -77,6 +90,29 @@ const instruments: Array<{ id: InstrumentId; label: string; group: 'Pianos' | 'O
   { id: 'bass', label: 'Bajo', group: 'Otros instrumentos' },
   { id: 'synth', label: 'Sintetizador', group: 'Otros instrumentos' },
 ];
+
+let ortRuntimePromise: Promise<OrtRuntime> | null = null;
+
+function loadOrtRuntime() {
+  if (window.ort) return Promise.resolve(window.ort);
+  if (ortRuntimePromise) return ortRuntimePromise;
+  ortRuntimePromise = new Promise<OrtRuntime>((resolve, reject) => {
+    const existing = document.querySelector<HTMLScriptElement>(`script[src="${ORT_SCRIPT_URL}"]`);
+    const script = existing ?? document.createElement('script');
+    const finish = () => window.ort ? resolve(window.ort) : reject(new Error('El motor ONNX no quedó disponible.'));
+    script.addEventListener('load', finish, { once: true });
+    script.addEventListener('error', () => reject(new Error('No se pudo descargar el motor ONNX. Revisa tu conexión e inténtalo otra vez.')), { once: true });
+    if (!existing) {
+      script.src = ORT_SCRIPT_URL;
+      script.crossOrigin = 'anonymous';
+      document.head.appendChild(script);
+    }
+  }).catch((error) => {
+    ortRuntimePromise = null;
+    throw error;
+  });
+  return ortRuntimePromise;
+}
 const demoTrack: Track = {
   id: 'track-demo', name: 'Piano principal', instrument: 'grand', color: TRACK_COLORS[0], muted: false, solo: false,
   notes: [
@@ -210,7 +246,7 @@ export function MidiStudio() {
     if (!audioFile) { audioInputRef.current?.click(); return; }
     try {
       setModelStatus('loading'); setModelProgress(3); setModelMessage('Preparando el motor local y descargando el modelo…');
-      const ort = await import('onnxruntime-web'); ort.env.wasm.wasmPaths = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.29.0/dist/'; ort.env.wasm.numThreads = Math.min(4, navigator.hardwareConcurrency || 1);
+      const ort = await loadOrtRuntime(); ort.env.wasm.wasmPaths = ORT_WASM_PATH; ort.env.wasm.numThreads = Math.min(4, navigator.hardwareConcurrency || 1);
       const session = await ort.InferenceSession.create(MODEL_URL, { executionProviders: ['wasm'], graphOptimizationLevel: 'disabled' });
       setModelProgress(16); setModelMessage('Decodificando y preparando el audio a 16 kHz…'); const context = await getContext(); const decoded = await context.decodeAudioData((await audioFile.arrayBuffer()).slice(0)); const audio = resampleMono(decoded); const totalChunks = Math.ceil(audio.length / MODEL_WINDOW); const transcribed: Note[] = []; setModelStatus('running');
       for (let chunkIndex = 0; chunkIndex < totalChunks; chunkIndex += 1) { const chunk = new Float32Array(MODEL_WINDOW); const start = chunkIndex * MODEL_WINDOW; const slice = audio.subarray(start, Math.min(audio.length, start + MODEL_WINDOW)); chunk.set(slice); setModelMessage(`Analizando segmento ${chunkIndex + 1} de ${totalChunks}…`); setModelProgress(16 + Math.round(((chunkIndex + 0.2) / totalChunks) * 78)); const outputs = await session.run({ waveform: new ort.Tensor('float32', chunk, [1, MODEL_WINDOW]) }); const onsetTensor = outputs.reg_onset_output ?? outputs.reg_onset; const frameTensor = outputs.frame_output ?? outputs.frame; const velocityTensor = outputs.velocity_output ?? outputs.velocity; if (!onsetTensor || !frameTensor) throw new Error('El modelo devolvió una salida no compatible.'); const dims = onsetTensor.dims.map(Number); const frameCount = dims[dims.length - 2] || Math.round((onsetTensor.data.length as number) / 88); const chunkDuration = slice.length / MODEL_SAMPLE_RATE; const decodedNotes = decodeModelChunk(onsetTensor.data as Float32Array, frameTensor.data as Float32Array, velocityTensor?.data as Float32Array | undefined, frameCount, start / MODEL_SAMPLE_RATE, Math.min(10, chunkDuration)).filter((note) => { const index = Math.round((note.time - start / MODEL_SAMPLE_RATE) * (frameCount - 1) / Math.max(chunkDuration, 0.01)) * 88 + (note.midi - 21); const confidence = (onsetTensor.data as Float32Array)[index] ?? 0; return confidence >= transcriptionThreshold / 100; }); transcribed.push(...decodedNotes); setModelProgress(16 + Math.round(((chunkIndex + 1) / totalChunks) * 78)); await new Promise((resolve) => setTimeout(resolve, 0)); }
