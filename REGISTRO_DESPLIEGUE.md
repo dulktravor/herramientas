@@ -415,3 +415,18 @@ La presencia de `.openai/hosting.json` no sustituye la infraestructura de produc
 - **URL verificada:** [https://herramientas.enrique-lazaro-dulktravor.workers.dev/herramientas/midi](https://herramientas.enrique-lazaro-dulktravor.workers.dev/herramientas/midi).
 - **Verificación posterior:** la portada, la ruta MIDI y los archivos públicos de SEO respondieron con HTTP 200; en producción se comprobó el piano virtual, el editor y la pestaña de transcripción. El artefacto estático más grande quedó en 1,27 MiB.
 - **Observaciones:** la transcripción descarga el runtime desde jsDelivr y los pesos ONNX desde Hugging Face solo al primer uso; el audio se procesa en el navegador y no se envía a CeroNube. El modelo original corresponde a ByteDance y los pesos convertidos se atribuyen bajo CC BY 4.0.
+
+---
+
+## Versión: 2026-09-01 — Taller de vídeo con FFmpeg WASM
+
+- **Commit de producto:** `feat: implementar taller de video con motor FFmpeg WASM local`
+- **Tipo:** función, multimedia, privacidad, accesibilidad y SEO.
+- **Cambios:** nueva herramienta para abrir MP4, WebM, MOV, MKV y AVI; recorte preciso con validación de rangos, cambio de relación de aspecto (16:9, 9:16 Shorts/TikTok, 1:1, 4:3), modo de encuadre (bandas/rellenar), escalado de resolución (1080p, 720p, 480p, 360p), velocidad (0.25x a 2x), FPS configurables, silenciado y mezcla/reemplazo de pista de audio externa, extracción de audio en MP3, WAV y OGG, conversión de vídeo a GIF animado mediante doble paso (palettegen/paletteuse), incrustación de subtítulos SRT/VTT, captura de fotogramas PNG y cancelación abortable sin fugas de memoria. Se integró la categoría Vídeo en DESIGN.md, portada, directorio y sitemap.
+- **Variables modificadas:** ninguna.
+- **Validaciones:** `npm run lint` (0 errores, 0 avisos), `npx tsc --noEmit` (0 errores), `npm run build` (compilación exitosa), pruebas unitarias de subtítulos y dimensiones, pruebas funcionales locales de conversión, recorte, audio y GIF.
+- **Despliegue:** automático mediante GitHub → Cloudflare Workers.
+- **Resultado:** correcto. Cloudflare compila y publica el Worker con Static Assets.
+- **URL verificada:** [https://herramientas.enrique-lazaro-dulktravor.workers.dev/herramientas/video](https://herramientas.enrique-lazaro-dulktravor.workers.dev/herramientas/video).
+- **Observaciones:** el motor FFmpeg WASM se descarga bajo demanda desde jsDelivr y se ejecuta localmente en memoria del navegador; los archivos del usuario nunca salen del dispositivo.
+

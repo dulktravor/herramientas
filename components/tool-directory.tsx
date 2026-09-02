@@ -7,6 +7,7 @@ import {
   ArrowUpRight,
   FileScan,
   Files,
+  Film,
   Images,
   Music2,
   ScanText,
@@ -28,7 +29,7 @@ import { Input } from '@/components/ui/input';
 type ToolItem = {
   name: string;
   description: string;
-  category: 'imagenes' | 'pdf' | 'datos' | 'audio';
+  category: 'imagenes' | 'pdf' | 'datos' | 'audio' | 'video';
   keywords: string;
   icon: LucideIcon;
   stage: 'Disponible' | 'Siguiente etapa';
@@ -36,6 +37,15 @@ type ToolItem = {
 };
 
 const tools: ToolItem[] = [
+  {
+    name: 'Taller de vídeo',
+    description: 'Recorta, cambia relación de aspecto, añade subtítulos SRT/VTT, extrae audio y convierte a MP4, WebM o GIF.',
+    category: 'video',
+    keywords: 'video mp4 webm mov mkv avi recortar inicio fin aspecto resolucion gif animado silenciar subtitulos srt vtt audio mp3 wav ogg velocidad fps fotograma comprimir',
+    icon: Film,
+    stage: 'Disponible',
+    href: '/herramientas/video',
+  },
   {
     name: 'Estudio MIDI',
     description: 'Toca, reproduce y edita MIDI en un piano-roll con instrumentos virtuales.',
@@ -112,24 +122,27 @@ const tools: ToolItem[] = [
 
 const categories = [
   { id: 'todas', label: 'Todas' },
+  { id: 'video', label: 'Vídeo' },
+  { id: 'audio', label: 'Audio' },
   { id: 'imagenes', label: 'Imágenes' },
   { id: 'pdf', label: 'PDF' },
   { id: 'datos', label: 'Datos' },
-  { id: 'audio', label: 'Audio' },
 ] as const;
 
 const categoryLabels = {
+  video: 'Vídeo',
+  audio: 'Audio',
   imagenes: 'Imagen',
   pdf: 'PDF',
   datos: 'Datos',
-  audio: 'Audio',
 } as const;
 
 const categoryStyles = {
+  video: 'bg-[#fee2e2] text-[#991b1b] dark:bg-[#331c20] dark:text-[#fca5a5]',
+  audio: 'bg-[#eee3ff] text-[#60309a] dark:bg-[#292033] dark:text-[#d7b5ff]',
   imagenes: 'bg-[#dff4f1] text-[#08666a] dark:bg-[#17272b] dark:text-[#66e1dc]',
   pdf: 'bg-[#ffe1ca] text-[#713915] dark:bg-[#30231d] dark:text-[#ffb27e]',
   datos: 'bg-[#083f43] text-[#f4ead7] dark:bg-[#202731] dark:text-[#f1ede5]',
-  audio: 'bg-[#eee3ff] text-[#60309a] dark:bg-[#292033] dark:text-[#d7b5ff]',
 } as const;
 
 export function ToolDirectory() {
