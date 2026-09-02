@@ -400,3 +400,18 @@ La presencia de `.openai/hosting.json` no sustituye la infraestructura de produc
 - **URL verificada:** [https://herramientas.enrique-lazaro-dulktravor.workers.dev/herramientas/audio](https://herramientas.enrique-lazaro-dulktravor.workers.dev/herramientas/audio).
 - **Verificación posterior:** la ruta pública respondió con HTTP 200, mostró el Estudio de audio y procesó correctamente un WAV mono de prueba, generando una previsualización y un archivo WAV descargable.
 - **Observaciones:** esta primera versión utiliza Web Audio API y exporta WAV PCM de 16 bits; las conversiones avanzadas a otros formatos quedan pendientes de integrar mediante un motor opcional cargado bajo demanda.
+
+---
+
+## Versión: 2026-09-01 — Estudio MIDI interactivo
+
+- **Commits de producto:** `9352b0b` (`feat: añadir estudio MIDI interactivo`) y `e75a296` (`fix: cargar ONNX bajo demanda`).
+- **Tipo:** función, inteligencia artificial, privacidad, accesibilidad y SEO.
+- **Cambios:** nueva herramienta para importar, reproducir, editar y exportar archivos MIDI multipista; piano-roll con edición nota a nota, cuantización, deshacer y rehacer; piano virtual controlable con ratón, pantalla táctil y teclado; grabación en la pista activa; cuatro sonidos de piano y cinco instrumentos adicionales. Se añadió Piano Transcription (ByteDance) como módulo opcional para convertir audio de piano en una pista MIDI editable mediante inferencia ONNX local.
+- **Variables modificadas:** ninguna.
+- **Validaciones:** `npm run lint`, `npm run build`, `git diff --check`, ida y vuelta de un archivo MIDI en memoria, importación válida e inválida, exportación, edición en el piano-roll, piano virtual, herramienta WebMCP y comprobación HTTP de portada, herramienta MIDI, `robots.txt`, `sitemap.xml` y `ads.txt`.
+- **Despliegue:** automático mediante GitHub → Cloudflare Workers.
+- **Resultado:** correcto. El primer intento detectó que el WASM incluido de ONNX Runtime excedía el límite de 25 MiB por activo de Cloudflare; se corrigió cargando el runtime bajo demanda y el despliegue posterior finalizó satisfactoriamente.
+- **URL verificada:** [https://herramientas.enrique-lazaro-dulktravor.workers.dev/herramientas/midi](https://herramientas.enrique-lazaro-dulktravor.workers.dev/herramientas/midi).
+- **Verificación posterior:** la portada, la ruta MIDI y los archivos públicos de SEO respondieron con HTTP 200; en producción se comprobó el piano virtual, el editor y la pestaña de transcripción. El artefacto estático más grande quedó en 1,27 MiB.
+- **Observaciones:** la transcripción descarga el runtime desde jsDelivr y los pesos ONNX desde Hugging Face solo al primer uso; el audio se procesa en el navegador y no se envía a CeroNube. El modelo original corresponde a ByteDance y los pesos convertidos se atribuyen bajo CC BY 4.0.
