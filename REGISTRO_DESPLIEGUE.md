@@ -470,13 +470,14 @@ La presencia de `.openai/hosting.json` no sustituye la infraestructura de produc
 
 ## Versión: 2026-09-06 — Laboratorio de fuentes local
 
-- **Commit:** commit de producto de esta entrada; identificador y resultado público se añadirán tras publicación.
+- **Commit de producto:** `4bb5554` (`feat: añadir laboratorio de fuentes local`).
 - **Tipo:** función, privacidad, accesibilidad y SEO.
 - **Cambios:** inspección TTF/OTF/WOFF/WOFF2, metadatos, prueba tipográfica, cobertura por alfabeto, cuadrícula paginada, muestras PNG, conversión web, subconjuntos y CSS @font-face. Motor local cancelable y WASM servido desde CeroNube.
 - **Variables modificadas:** ninguna.
 - **Validaciones:** lint, TypeScript, build, diff --check, tres pruebas automatizadas y pruebas funcionales de navegador sobre el build, formatos válidos e inválidos, relectura de descargas, subconjuntos exactos, PNG, cancelación, móvil, tema oscuro y ausencia de envíos.
-- **Despliegue:** automático mediante GitHub → Cloudflare, pendiente de envío.
-- **Resultado:** validado localmente; comprobación pública pendiente.
-- **URL prevista:** https://herramientas.enrique-lazaro-dulktravor.workers.dev/herramientas/fuentes.
+- **Despliegue:** automático mediante GitHub → Cloudflare; Workers Builds y Cloudflare Pages completados con éxito para `4bb5554`.
+- **Resultado:** correcto; versión pública comprobada funcionalmente.
+- **URL verificada:** https://herramientas.enrique-lazaro-dulktravor.workers.dev/herramientas/fuentes.
 - **Observaciones:** límite 10 MB / 40 MB descomprimidos; exportación estática con posibles pérdidas de funciones tipográficas avanzadas, indicadas en la interfaz. No se incluyen fuentes del sistema, archivos de prueba personales ni capturas en Git.
 - Preparación de publicación: origin/main no avanzó; npm ci completado desde el archivo de bloqueo. Se cerraron los servidores de prueba y se añadió limpieza del temporizador al abandonar la página. Se repiten validaciones finales antes del commit.
+- Publicación y verificación: commit 4bb5554 enviado a origin/main. Cloudflare Workers y Pages finalizaron correctamente. En producción se verificaron carga TTF, conversiones WOFF/WOFF2/TTF, relectura WOFF2, rechazo de inválidos, limpieza, subconjunto exacto, PNG, móvil, tema oscuro y cancelación; el flujo no emitió peticiones de envío. Portada, fuentes, ZIP, privacidad, robots.txt, sitemap.xml, ads.txt y WASM devolvieron HTTP 200; el sitemap incluye la nueva ruta. Se publica este cierre documental sin cambios de producto.
