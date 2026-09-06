@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import {
+  Type,
   Braces,
   ArrowUpRight,
   FileScan,
@@ -30,7 +31,7 @@ import { Input } from '@/components/ui/input';
 type ToolItem = {
   name: string;
   description: string;
-  category: 'imagenes' | 'pdf' | 'datos' | 'audio' | 'video' | 'comprimidos';
+  category: 'imagenes' | 'pdf' | 'datos' | 'audio' | 'video' | 'comprimidos' | 'tipografias';
   keywords: string;
   icon: LucideIcon;
   stage: 'Disponible' | 'Siguiente etapa';
@@ -38,6 +39,7 @@ type ToolItem = {
 };
 
 const tools: ToolItem[] = [
+  { name: 'Laboratorio de fuentes', description: 'Inspecciona, prueba y convierte tipografías; crea muestras y subconjuntos locales.', category: 'tipografias', keywords: 'fuentes tipografias ttf otf woff woff2 glifos caracteres letras subconjunto font css', icon: Type, stage: 'Disponible', href: '/herramientas/fuentes' },
   {
     name: 'Gestor de archivos ZIP',
     description:
@@ -141,6 +143,7 @@ const tools: ToolItem[] = [
 ];
 
 const categories = [
+  { id: 'tipografias', label: 'Tipografías' },
   { id: 'todas', label: 'Todas' },
   { id: 'comprimidos', label: 'Comprimidos' },
   { id: 'video', label: 'Vídeo' },
@@ -151,6 +154,7 @@ const categories = [
 ] as const;
 
 const categoryLabels = {
+  tipografias: 'Tipografías',
   comprimidos: 'Comprimidos',
   video: 'Vídeo',
   audio: 'Audio',
@@ -160,6 +164,7 @@ const categoryLabels = {
 } as const;
 
 const categoryStyles = {
+  tipografias: 'bg-blue-100 text-blue-900 dark:bg-blue-950 dark:text-blue-200',
   comprimidos:
     'bg-[#fef3c7] text-[#92400e] dark:bg-[#332719] dark:text-[#fcd34d]',
   video: 'bg-[#fee2e2] text-[#991b1b] dark:bg-[#331c20] dark:text-[#fca5a5]',

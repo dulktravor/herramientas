@@ -458,3 +458,25 @@ La presencia de `.openai/hosting.json` no sustituye la infraestructura de produc
 - **URL verificada:** [https://herramientas.enrique-lazaro-dulktravor.workers.dev/herramientas/zip](https://herramientas.enrique-lazaro-dulktravor.workers.dev/herramientas/zip).
 - **Verificación posterior:** la ruta pública mostró el Gestor de archivos ZIP y la declaración de procesamiento local; portada, privacidad y archivos públicos de SEO continuaron respondiendo correctamente.
 - **Observaciones:** la primera versión admite ZIP de hasta 200 MB, 500 MB descomprimidos, 5.000 entradas y vistas previas de texto de hasta 256 KB. Los ZIP cifrados, TAR, TAR.GZ y 7Z quedan fuera de este alcance.
+
+## Bitácora: 2026-09-06 — Laboratorio de fuentes
+
+- Inicio: leídas especificación y guía; rama main y árbol limpio confirmados. Se conserva publicación GitHub → Cloudflare indicada por el usuario. Primera sincronización limitada por permisos de .git; se solicita ejecución autorizada.
+
+- Sincronización completada: main ya estaba actualizado. Se incorporaron fonteditor-core y pako con bloqueo de versiones, motor WOFF2 servido desde el mismo sitio y procesamiento en Worker cancelable. Implementadas inspección, cobertura, muestra PNG, conversión TTF/WOFF/WOFF2, subconjuntos y CSS. Integradas portada, directorio, SEO y sitemap mediante publicTools. Límites: 10 MB de entrada, 40 MB descomprimidos y 60 segundos por operación. Exportación de contornos estáticos con pérdidas avanzadas explicitadas.
+
+- Validación inicial: lint y TypeScript correctos; build correcto. Pruebas en desarrollo: importación TTF, exportación WOFF/WOFF2/TTF, relectura WOFF2, rechazo inválido y limpieza correctos. La prueba compilada detectó una referencia a window en el motor; se añadió inicialización compatible con Worker antes de sus dependencias. Se filtraron alias Unicode de glifos compartidos para garantizar subconjuntos exactos. Se añadieron pruebas automatizadas con fuente sintética, sin archivos del usuario. Auditoría: aviso moderado preexistente en qs, ajeno a las dependencias nuevas; no se actualizó fuera de alcance. Instalación inicial restringida por red, repetida con autorización y completada.
+- Validación final compilada: TTF, OTF sintética, WOFF y WOFF2 abren correctamente; conversiones TTF/WOFF/WOFF2 y OTF→WOFF2 reabiertas; subconjunto verificado con igualdad exacta de códigos Unicode; muestra PNG válida; cancelación durante WOFF2 correcta; vista móvil de 390 px sin desbordamiento y tema oscuro revisado. No hubo peticiones de envío durante el flujo. Tres pruebas automatizadas pasan. El build se repitió tras detener el servidor que mantenía bloqueada dist/client; compilación final correcta. No se modificaron variables.
+
+## Versión: 2026-09-06 — Laboratorio de fuentes local
+
+- **Commit:** commit de producto de esta entrada; identificador y resultado público se añadirán tras publicación.
+- **Tipo:** función, privacidad, accesibilidad y SEO.
+- **Cambios:** inspección TTF/OTF/WOFF/WOFF2, metadatos, prueba tipográfica, cobertura por alfabeto, cuadrícula paginada, muestras PNG, conversión web, subconjuntos y CSS @font-face. Motor local cancelable y WASM servido desde CeroNube.
+- **Variables modificadas:** ninguna.
+- **Validaciones:** lint, TypeScript, build, diff --check, tres pruebas automatizadas y pruebas funcionales de navegador sobre el build, formatos válidos e inválidos, relectura de descargas, subconjuntos exactos, PNG, cancelación, móvil, tema oscuro y ausencia de envíos.
+- **Despliegue:** automático mediante GitHub → Cloudflare, pendiente de envío.
+- **Resultado:** validado localmente; comprobación pública pendiente.
+- **URL prevista:** https://herramientas.enrique-lazaro-dulktravor.workers.dev/herramientas/fuentes.
+- **Observaciones:** límite 10 MB / 40 MB descomprimidos; exportación estática con posibles pérdidas de funciones tipográficas avanzadas, indicadas en la interfaz. No se incluyen fuentes del sistema, archivos de prueba personales ni capturas en Git.
+- Preparación de publicación: origin/main no avanzó; npm ci completado desde el archivo de bloqueo. Se cerraron los servidores de prueba y se añadió limpieza del temporizador al abandonar la página. Se repiten validaciones finales antes del commit.

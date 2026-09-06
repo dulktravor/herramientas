@@ -456,3 +456,7 @@ No se crea un patrón visual nuevo cuando un componente compartido resuelve la n
 | Controles base | `components/ui/` |
 
 Toda evolución visual debe empezar por los tokens o componentes compartidos cuando afecta a más de una página. Los estilos locales se justifican únicamente cuando expresan una función especializada sin romper la identidad general.
+
+### Laboratorio de fuentes
+- Categoría Tipografías, icono Type, acento azul con equivalente oscuro.
+- Ruta /herramientas/fuentes; superficie tipográfica local, rejilla paginada de 96 caracteres y controles adaptables.
