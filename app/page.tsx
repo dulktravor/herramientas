@@ -172,7 +172,7 @@ export default function Home() {
           <div className="mx-auto mt-10 grid max-w-xl grid-cols-3 overflow-hidden rounded-2xl border border-border bg-card/75 text-left shadow-sm backdrop-blur">
             <div className="p-4 sm:p-5">
               <p className="text-2xl font-bold tracking-[-0.04em] text-foreground">
-                10
+                {publicTools.length}
               </p>
               <p className="mt-1 text-xs text-muted-foreground sm:text-sm">
                 utilidades
@@ -313,7 +313,7 @@ export default function Home() {
             <div>
               <p className="flex items-center gap-2 text-sm font-medium text-[#4fe0d6]">
                 <CheckCircle2 className="size-4" aria-hidden="true" />
-                Diez herramientas disponibles
+                {publicTools.length} herramientas disponibles
               </p>
               <h2 className="mt-3 max-w-2xl text-balance text-3xl font-semibold tracking-[-0.035em]">
                 Todo lo necesario para resolver el archivo y seguir con tu día.
