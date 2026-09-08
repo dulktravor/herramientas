@@ -460,3 +460,7 @@ Toda evolución visual debe empezar por los tokens o componentes compartidos cua
 ### Laboratorio de fuentes
 - Categoría Tipografías, icono Type, acento azul con equivalente oscuro.
 - Ruta /herramientas/fuentes; superficie tipográfica local, rejilla paginada de 96 caracteres y controles adaptables.
+
+### Taller EPUB — Libros electrónicos
+
+Ruta /herramientas/epub. Editor de lectura con lista lateral de capítulos, vista previa serif aislada y controles del sistema compartido. Categoría ámbar con contraste adaptado a tema oscuro. EPUB, Markdown y HTML locales; límites visibles, cancelación, validación previa a la descarga y rutas editables para reparar recursos.

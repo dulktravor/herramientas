@@ -165,7 +165,7 @@ export default function Home() {
             Resuelve aquí. <span className="text-primary">No subas nada.</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-balance text-base leading-7 text-muted-foreground sm:text-lg">
-            Utilidades rápidas para imágenes, PDF, audio, vídeo, ZIP, tipografías y datos que
+            Utilidades rápidas para imágenes, PDF, audio, vídeo, ZIP, tipografías, EPUB y datos que
             procesan tus archivos directamente en el navegador. Sin registro,
             sin esperas y con privacidad por diseño.
           </p>

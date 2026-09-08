@@ -16,11 +16,11 @@ const original = base.write({ type: 'ttf', toBuffer: false });
 const options = {
   inflate: (bytes) => Array.from(inflate(new Uint8Array(bytes))),
 };
-test('rechaza archivos inválidos y detecta TTF por firma', () => {
+void test('rechaza archivos inválidos y detecta TTF por firma', () => {
   assert.throws(() => detectFont(new Uint8Array([1, 2, 3]).buffer));
   assert.equal(detectFont(original), 'ttf');
 });
-test('conversión y relectura de TTF, WOFF y WOFF2 preservan caracteres', async () => {
+void test('conversión y relectura de TTF, WOFF y WOFF2 preservan caracteres', async () => {
   await woff2.init();
   for (const type of ['ttf', 'woff', 'woff2']) {
     const font = Font.create(original, { type: 'ttf' });
@@ -37,7 +37,7 @@ test('conversión y relectura de TTF, WOFF y WOFF2 preservan caracteres', async 
     );
   }
 });
-test('subconjunto retiene eñe y Unicode no BMP sin caracteres ajenos', () => {
+void test('subconjunto retiene eñe y Unicode no BMP sin caracteres ajenos', () => {
   const subset = Font.create(original, {
     type: 'ttf',
     subset: [241, 0x1f600],

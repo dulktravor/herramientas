@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import {
-  Type,
+  BookOpen, Type,
   Braces,
   ArrowUpRight,
   FileScan,
@@ -31,7 +31,7 @@ import { Input } from '@/components/ui/input';
 type ToolItem = {
   name: string;
   description: string;
-  category: 'imagenes' | 'pdf' | 'datos' | 'audio' | 'video' | 'comprimidos' | 'tipografias';
+  category: 'imagenes' | 'pdf' | 'datos' | 'audio' | 'video' | 'comprimidos' | 'tipografias' | 'libros';
   keywords: string;
   icon: LucideIcon;
   stage: 'Disponible' | 'Siguiente etapa';
@@ -39,6 +39,7 @@ type ToolItem = {
 };
 
 const tools: ToolItem[] = [
+  { name: 'Taller EPUB', description: 'Crea libros, organiza capítulos, cambia portada y metadatos y repara el índice.', category: 'libros', keywords: 'epub libro ebook capítulos markdown html portada autor indice extraer texto', icon: BookOpen, stage: 'Disponible', href: '/herramientas/epub' },
   { name: 'Laboratorio de fuentes', description: 'Inspecciona, prueba y convierte tipografías; crea muestras y subconjuntos locales.', category: 'tipografias', keywords: 'fuentes tipografias ttf otf woff woff2 glifos caracteres letras subconjunto font css', icon: Type, stage: 'Disponible', href: '/herramientas/fuentes' },
   {
     name: 'Gestor de archivos ZIP',
@@ -143,6 +144,7 @@ const tools: ToolItem[] = [
 ];
 
 const categories = [
+  { id: 'libros', label: 'Libros electrónicos' },
   { id: 'tipografias', label: 'Tipografías' },
   { id: 'todas', label: 'Todas' },
   { id: 'comprimidos', label: 'Comprimidos' },
@@ -154,6 +156,7 @@ const categories = [
 ] as const;
 
 const categoryLabels = {
+  libros: 'Libros electrónicos',
   tipografias: 'Tipografías',
   comprimidos: 'Comprimidos',
   video: 'Vídeo',
@@ -164,6 +167,7 @@ const categoryLabels = {
 } as const;
 
 const categoryStyles = {
+  libros: 'bg-amber-100 text-amber-900 dark:bg-amber-950 dark:text-amber-200',
   tipografias: 'bg-blue-100 text-blue-900 dark:bg-blue-950 dark:text-blue-200',
   comprimidos:
     'bg-[#fef3c7] text-[#92400e] dark:bg-[#332719] dark:text-[#fcd34d]',

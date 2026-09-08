@@ -8,9 +8,10 @@ export const siteName = 'CeroNube';
 export const siteTagline = 'Resuelve aquí. No subas nada.';
 
 export const siteDescription =
-  'Utilidades privadas para imágenes, PDF, vídeo, audio, ZIP, tipografías y datos que procesan tus archivos directamente en el navegador.';
+  'Utilidades privadas para imágenes, PDF, vídeo, audio, ZIP, tipografías, EPUB y datos que procesan tus archivos directamente en el navegador.';
 
 export const publicTools = [
+  { name: 'Taller EPUB', description: 'Crea y reorganiza libros, edita capítulos y metadatos, repara el índice y extrae texto localmente.', path: '/herramientas/epub' },
   { name: 'Laboratorio de fuentes', description: 'Inspecciona y convierte fuentes, crea muestras y subconjuntos en tu navegador.', path: '/herramientas/fuentes' },
   {
     name: 'Gestor de archivos ZIP',
