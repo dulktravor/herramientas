@@ -506,3 +506,17 @@ La presencia de `.openai/hosting.json` no sustituye la infraestructura de produc
 - **Verificación posterior:** portada, EPUB, ZIP, fuentes, privacidad, robots.txt, sitemap.xml y ads.txt devuelven HTTP 200; el sitemap contiene la nueva ruta.
 - **Observaciones:** entrada 30 MB, contenido 80 MB, 1.500 entradas y 300 capítulos; capítulos hasta 2 MB y recursos nuevos hasta 5 MB. Preview raster limitada a 10 MB por capítulo. Se rechazan DRM/fuentes ofuscadas, ediciones múltiples y maquetación fija. La salida simplifica estilos, contenido activo y metadatos avanzados; la validación básica no sustituye EPUBCheck. Auditoría conserva el aviso moderado preexistente de qs, ajeno a esta función. No se incluyen archivos personales ni capturas en Git.
 - **Cierre:** servidores locales detenidos; se guarda y envía este cierre documental sin cambios de producto. Para repetir las pruebas: iniciar el servidor y ejecutar `npx playwright test tests/epub.test.mjs --workers=1 --reporter=line --output=work/epub-tests`; EPUB_TEST_URL permite elegir la URL y PLAYWRIGHT_CHROMIUM_EXECUTABLE seleccionar un Chromium instalado.
+
+---
+
+## Versión: 2026-09-07 — contador automático de herramientas
+
+- **Commit de producto:** `2ce41d1` (`fix: actualizar automáticamente el total de herramientas`).
+- **Tipo:** corrección.
+- **Cambios:** se reemplazaron los dos totales escritos manualmente en la portada por el número calculado desde `publicTools`, la fuente pública que también alimenta los datos estructurados y el sitemap. La portada muestra 12 utilidades y el total se actualizará automáticamente al ampliar ese catálogo.
+- **Variables modificadas:** ninguna.
+- **Validaciones:** `npm run lint`, `npx tsc --noEmit`, `npm run build` y `git diff --check`, todos correctos. Se comprobó la respuesta HTML de producción con omisión de caché.
+- **Despliegue:** automático mediante GitHub → Cloudflare; Workers Builds y Cloudflare Pages completados correctamente para `2ce41d1`.
+- **Resultado:** correcto; ambos totales de la portada pública muestran 12.
+- **URL verificada:** https://herramientas.enrique-lazaro-dulktravor.workers.dev/.
+- **Observaciones:** no hubo cambios funcionales en las herramientas ni en sus límites de procesamiento.
