@@ -124,6 +124,12 @@ La profundidad de la prueba depende del cambio. Como mínimo debe probarse la ru
 - `/herramientas/ocr`
 - `/herramientas/datos`
 - `/herramientas/escaner`
+- `/herramientas/audio`
+- `/herramientas/midi`
+- `/herramientas/video`
+- `/herramientas/zip`
+- `/herramientas/fuentes`
+- `/herramientas/epub`
 - `/robots.txt`
 - `/sitemap.xml`
 - `/ads.txt`

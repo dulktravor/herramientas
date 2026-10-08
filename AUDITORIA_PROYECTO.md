@@ -4,7 +4,7 @@ Fecha: 8 de octubre de 2026. Referencia inicial: `06d1248` en `main` y `origin/m
 
 ## Resultado
 
-Se identificaron mejoras del escáner y del OCR del 17 de septiembre que permanecían sin publicar. Se completaron pruebas y correcciones antes de preparar el despliegue automático GitHub → Cloudflare. La evidencia definitiva de producción se conserva en `REGISTRO_DESPLIEGUE.md`.
+Se identificaron mejoras del escáner y del OCR del 17 de septiembre que permanecían sin publicar. Se completaron pruebas y correcciones, y se publicó el commit `084f4c5` por GitHub → Cloudflare. Cloudflare confirmó éxito y las nueve pruebas de navegador pasaron también en producción; las 19 rutas revisadas respondieron HTTP 200. La evidencia se conserva en `REGISTRO_DESPLIEGUE.md`.
 
 El catálogo tiene 12 herramientas; no se añadieron las candidatas de la investigación como funciones disponibles. `AUDITORIA_COMPARATIVA.md` recoge siete referencias y diez oportunidades nuevas.
 

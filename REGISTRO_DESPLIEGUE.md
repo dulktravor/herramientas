@@ -4,9 +4,9 @@
 
 **Primera publicación registrada:** 29 de agosto de 2026
 
-**Última actualización de producto verificada:** 7 de septiembre de 2026; publicación del 8 de octubre en preparación (véase última entrada).
+**Última actualización de producto verificada:** 8 de octubre de 2026.
 
-**URL histórica de producción en Cloudflare Workers:** [https://herramientas.enrique-lazaro-dulktravor.workers.dev/](https://herramientas.enrique-lazaro-dulktravor.workers.dev/)
+**URL de producción en Cloudflare Workers:** [https://herramientas.enrique-lazaro-dulktravor.workers.dev/](https://herramientas.enrique-lazaro-dulktravor.workers.dev/)
 **Repositorio GitHub:** [https://github.com/dulktravor/herramientas](https://github.com/dulktravor/herramientas)  
 
 ---
@@ -524,10 +524,14 @@ La presencia de `.openai/hosting.json` no sustituye la infraestructura de produc
 
 ## Versión: 2026-10-08 — OCR multipágina, perspectiva y auditoría general
 
-- **Estado:** validación local completa; pendiente envío y comprobación pública.
+- **Estado:** publicada y verificada en producción.
 - **Cambios:** escáner con cuatro esquinas y ajustes por página; OCR de imágenes/PDF y exportación TXT/PDF buscable; correcciones de consentimiento, recursos de vídeo, nombres ZIP, CSV y límite PDF; dependencias compatibles actualizadas.
 - **Documentación:** purga de propuesta de marca obsoleta, catálogo consolidado, README y auditorías del proyecto y siete competidores. Diez propuestas evaluadas; no implementadas.
 - **Variables modificadas:** ninguna.
 - **Validaciones:** npm ci, lint, TypeScript, build, 10 pruebas unitarias, 9 pruebas de navegador y extracción del texto OCR del PDF; móvil oscuro y ausencia de envíos POST/PUT/PATCH en flujos instrumentados.
 - **Dependencias:** npm audit pasó de 26 avisos (3 críticos) a 16 (0 críticos, 13 altos, 3 moderados); seguimiento en AUDITORIA_PROYECTO.md.
-- **Publicación prevista:** GitHub main → Cloudflare Workers. El envío por sí solo no confirma producción.
+- **Commit de producto:** `084f4c51754167c53faff221e8575488a1f11877`.
+- **Despliegue confirmado:** GitHub main → Cloudflare Workers; Workers Builds y Cloudflare Pages completados con éxito para el commit de producto.
+- **Verificación pública:** nueve pruebas de navegador correctas en la URL oficial y 19 rutas HTTP 200. OCR y escáner muestran la nueva versión; PDF buscable verificado por extracción de texto, lote de 20 páginas, móvil y regresiones correctos.
+- **URL verificada:** https://herramientas.enrique-lazaro-dulktravor.workers.dev/.
+- **Cierre:** este registro y la hoja de mejoras se actualizan en un commit documental sin cambios de producto.

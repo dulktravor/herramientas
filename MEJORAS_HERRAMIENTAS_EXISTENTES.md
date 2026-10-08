@@ -52,8 +52,8 @@ Todas las mejoras deben respetar estos criterios:
 
 | Orden | Mejora principal | Herramienta | Impacto | Complejidad | Estado |
 | ---: | --- | --- | --- | --- | --- |
-| 1 | Corrección real de perspectiva | Escáner a PDF | Muy alto | Media-alta | Completada |
-| 2 | OCR multipágina y PDF buscable | Imagen a texto | Muy alto | Media-alta | Completada |
+| 1 | Corrección real de perspectiva | Escáner a PDF | Muy alto | Media-alta | Desplegada |
+| 2 | OCR multipágina y PDF buscable | Imagen a texto | Muy alto | Media-alta | Desplegada |
 | 3 | Exportación MP3 y OGG | Estudio de audio | Muy alto | Media | Pendiente |
 | 4 | Peso objetivo y recorte visual | Estudio de imágenes | Alto | Media | Pendiente |
 | 5 | Acciones por lotes y deshacer | Organizar PDF | Alto | Media | Pendiente |
@@ -499,15 +499,24 @@ Copiar esta plantilla al inicio del registro cada vez que se realice trabajo:
 
 Las entradas nuevas deben colocarse inmediatamente debajo de este texto, dejando la más reciente primero.
 
+### 2026-10-08 — M-01 y M-02 — publicación verificada
+
+- **Estado anterior:** Completada.
+- **Estado nuevo:** Desplegada.
+- **Commit de producto:** `084f4c51754167c53faff221e8575488a1f11877`.
+- **Despliegue:** Cloudflare Pages y Workers Builds finalizados con éxito para el commit exacto.
+- **Verificación pública:** las nueve pruebas de navegador pasan también en la URL oficial; OCR de imágenes/PDF, texto buscable extraído con PDF.js, TXT editado, cancelación, escáner de 20 páginas, teclado, móvil oscuro, preferencias, CSV/ZIP/PDF y EPUB. Las 19 rutas verificadas responden HTTP 200.
+- **Privacidad:** no se detectaron solicitudes POST/PUT/PATCH en los flujos de archivos instrumentados. Se utilizaron documentos sintéticos; capturas y resultados excluidos de Git.
+- **Limitaciones y seguimiento:** `AUDITORIA_PROYECTO.md`; 16 avisos de dependencias, sin críticos. Nuevas propuestas solo investigadas.
 ### 2026-10-08 — M-01 y M-02 — auditoría y preparación de publicación
 
 - **Estado anterior:** En pruebas, sin commit ni despliegue.
-- **Estado nuevo:** Completada; pendiente verificación pública para marcar Desplegada.
+- **Estado nuevo:** Desplegada; versión pública comprobada para 084f4c5.
 - **Trabajo realizado:** Revisados los cambios pendientes, corregidas cancelación OCR, alineación de PDF, límites de rasterización, guardas de cargas y liberación de recursos. Añadida explicación de edición TXT frente a PDF. Escáner con prueba de 20 páginas, cancelación, teclado e inválidos; OCR real con imágenes/PDF, TXT, PDF con texto extraíble, límite de 30 páginas y cancelación.
 - **Archivos modificados:** componentes del escáner/OCR, motores `lib/perspective.ts` y `lib/ocr-document.ts`, páginas, catálogo y `tests/document-tools.test.mjs` más pruebas unitarias.
 - **Pruebas realizadas:** npm ci, lint, TypeScript, build, 10 pruebas unitarias y 9 flujos de navegador; verificación adicional de texto PDF. Pantallas móviles oscuras revisadas. Sin solicitudes POST/PUT/PATCH durante los flujos instrumentados.
 - **Limitaciones:** Ver `AUDITORIA_PROYECTO.md`; PDF conserva reconocimiento por página, TXT/copia admiten corrección completa; descarga inicial puede requerir terminar al cancelar. M-06 y mejoras adicionales quedan pendientes.
-- **Próximo paso:** Publicar por main y comprobar build de Cloudflare y sitio público.
+- **Próximo paso:** M-01/M-02 publicadas y verificadas; continuar mejoras pendientes según prioridad.
 - **Autorización actual:** El usuario solicitó explícitamente publicar las actualizaciones el 8 de octubre; sustituye la instrucción histórica de no publicar del 17 de septiembre.
 ### 2026-09-17 — M-02 — OCR multipágina y PDF buscable
 
