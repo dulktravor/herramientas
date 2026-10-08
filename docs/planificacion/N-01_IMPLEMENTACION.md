@@ -1,6 +1,6 @@
 # N-01 — Crear y leer QR
 
-Fecha: 8 de octubre de 2026. Implementación local; no publicada desde esta tarea.
+Fecha: 8 de octubre de 2026. Implementada, publicada y verificada en la página oficial; commit de producto `b63011f`.
 
 ## Alcance entregado
 
@@ -56,6 +56,6 @@ Mediciones locales en Node 22.21: generación del máximo, SVG y lectura indepen
 
 ## Archivos
 
-Verificación final del coordinador: flujo de navegador aprobado sobre el build final, incluyendo regreso por historial con texto y campos Wi-Fi vacíos. Revisión visual móvil en ambos temas y las cuatro pruebas de integración compartida aprobadas. Lint, TypeScript y build del proyecto pasan. Publicación pendiente.
+Verificación final del coordinador: flujo de navegador aprobado sobre el build final y en la página oficial, incluyendo regreso por historial con texto y campos Wi-Fi vacíos. Revisión visual móvil en ambos temas y las cuatro pruebas de integración compartida aprobadas localmente y en producción. Lint, TypeScript y build del proyecto pasan. Cloudflare confirmó el despliegue del commit `b63011f`; véase el [registro](../historial/REGISTRO_DESPLIEGUE.md).
 
 `app/herramientas/qr/page.tsx`, `components/qr-workshop.tsx`, `lib/qr.ts`, `lib/qr-reader.worker.ts`, `tests/qr.test.mjs`, `tests/qr-browser.test.mjs`, `public/qr-licenses.txt`, esta nota y las dependencias en `package.json`/`package-lock.json`. El agente integrador mantiene catálogo, navegación y documentación común.

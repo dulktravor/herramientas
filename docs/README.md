@@ -37,6 +37,6 @@ Una propuesta permanece en planificación hasta que su implementación y publica
 
 Para revisar las diez oportunidades: [auditoría comparativa](auditorias/AUDITORIA_COMPARATIVA.md) → [propuestas de implementación](planificacion/PROPUESTAS_NUEVAS_HERRAMIENTAS.md) → [catálogo y condiciones](producto/HERRAMIENTAS_POR_IMPLEMENTAR.md).
 
-Para consultar las decisiones y pruebas de las primeras implementaciones locales: [QR](planificacion/N-01_IMPLEMENTACION.md), [texto](planificacion/N-02_IMPLEMENTACION.md) y [contraseñas y frases](planificacion/N-03_IMPLEMENTACION.md). Su publicación permanece pendiente.
+Para consultar las decisiones y pruebas de las primeras implementaciones: [QR](planificacion/N-01_IMPLEMENTACION.md), [texto](planificacion/N-02_IMPLEMENTACION.md) y [contraseñas y frases](planificacion/N-03_IMPLEMENTACION.md). Las tres están publicadas y verificadas; la evidencia está en el [registro de despliegue](historial/REGISTRO_DESPLIEGUE.md).
 
 Para publicar una implementación: [guía de despliegue](operacion/GUIA_DESPLIEGUE_ACTUALIZACIONES.md) → [registro de versiones](historial/REGISTRO_DESPLIEGUE.md).

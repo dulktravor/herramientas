@@ -1,6 +1,6 @@
 # N-02 — Limpiar y ordenar texto
 
-Implementación local: 8 de octubre de 2026. Esta nota describe el código, no acredita un despliegue en producción.
+Implementación y publicación: 8 de octubre de 2026. El commit de producto `b63011f` se desplegó en Cloudflare y se verificó en la página oficial.
 
 Ruta: `/herramientas/texto`. Componentes: `components/text-workshop.tsx`, `lib/text-tools.ts` y `lib/text.worker.ts`. No se incorporan dependencias nuevas.
 
@@ -36,6 +36,6 @@ Prueba medida el 8 de octubre de 2026 en Node 22.21.0: 1 MiB y 50.000 líneas, c
 - `node --experimental-strip-types --test tests/text-tools.test.mjs`: diez casos sobre Unicode, tildes/ñ, emoji, tabulaciones, finales mixtos, identidad exacta, codificaciones, duplicados, orden, tamaños y previsualización.
 - `tests/text-browser.test.mjs`: flujo de TXT, resultado antes de reemplazar, copia exacta al API del portapapeles, descarga byte por byte, deshacer/limpiar, errores de codificación/límite, cancelación del Worker, BFCache, móvil y oscuro. URL configurable mediante `TEXT_TEST_URL`; ejecutable mediante `PLAYWRIGHT_CHROMIUM_EXECUTABLE`.
 - TSC y oxlint de los archivos nuevos sin errores.
-- Verificación final del coordinador: cinco de cinco pruebas de navegador aprobadas después de incorporar borrado síncrono antes de BFCache y revocación de URLs temporales; cuatro pruebas de integración compartida aprobadas. Lint, TypeScript y build completos pasan. Revisión visual móvil realizada en ambos temas; publicación pendiente.
+- Verificación final del coordinador: cinco de cinco pruebas de navegador aprobadas localmente y en producción después de incorporar borrado síncrono antes de BFCache y revocación de URLs temporales; cuatro pruebas de integración compartida aprobadas también en ambos entornos. Lint, TypeScript y build completos pasan. Revisión visual móvil realizada en ambos temas; publicación verificada en el [registro](../historial/REGISTRO_DESPLIEGUE.md).
 
 No se afirma funcionamiento sin conexión: el navegador necesita cargar previamente la página, sus recursos y el módulo Worker. No hay guardado automático ni recuperación de una sesión al volver.

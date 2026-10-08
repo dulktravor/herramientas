@@ -1,6 +1,6 @@
 # N-03 · Generar contraseñas y frases
 
-Fecha: 8 de octubre de 2026. Implementada, revisada conjuntamente y comprobada sobre el build de producción local; publicación pendiente. Sin commit ni despliegue en esta entrega.
+Fecha: 8 de octubre de 2026. Implementada, revisada conjuntamente y comprobada localmente y en la página oficial. Commit de producto `b63011f`, desplegado correctamente en Cloudflare.
 
 ## Alcance entregado
 
@@ -43,8 +43,8 @@ La revisión posterior hace deterministas los conteos de frases y prueba los cua
 
 ## Integración y límites
 
-Verificación final del coordinador: diez pruebas de algoritmo y cinco de navegador aprobadas tras añadir casos deterministas de los compuestos con guion. Las cuatro comprobaciones comunes de catálogo, sitemap, aislamiento y temas móviles también pasan. Lint, TypeScript y build completos aprobados.
+Verificación final del coordinador: diez pruebas de algoritmo y cinco de navegador aprobadas tras añadir casos deterministas de los compuestos con guion. Las cinco pruebas de navegador y las cuatro comprobaciones comunes de catálogo, sitemap, aislamiento y temas móviles pasan también en la página oficial. Lint, TypeScript y build completos aprobados. Publicación documentada en el [registro](../historial/REGISTRO_DESPLIEGUE.md).
 
 El coordinador integra catálogo, categoría Utilidades, sitemap y documentación de seguimiento. La protección compartida de rutas sensibles suspende medición/publicidad en esta ruta y recarga un documento limpio si existían scripts opcionales de una navegación previa. Esa protección y su prueba pertenecen a archivos compartidos fuera de la propiedad de este agente.
 
-No se anuncia modo sin conexión; no se ha validado un despliegue público. El diccionario está en inglés, explicitado antes de generar. Se necesita un navegador con Crypto; Clipboard API requiere compatibilidad y contexto permitido. Si copiar falla, el usuario puede mostrar y copiar manualmente. Las pruebas usan datos sintéticos y no credenciales reales.
+No se anuncia modo sin conexión. El despliegue público se verificó con Chrome instalado; no se certifican otros navegadores. El diccionario está en inglés, explicitado antes de generar. Se necesita un navegador con Crypto; Clipboard API requiere compatibilidad y contexto permitido. Si copiar falla, el usuario puede mostrar y copiar manualmente. Las pruebas usan datos sintéticos y no credenciales reales.

@@ -544,3 +544,17 @@ La presencia de `.openai/hosting.json` no sustituye la infraestructura de produc
 - **Validación previa:** instalación reproducible `npm ci`, lint, TypeScript, build y 35 pruebas de algoritmos correctos. Las 15 comprobaciones de navegador de la entrega local pasaron; se repetirán en la página oficial tras el despliegue.
 - **Variables modificadas:** ninguna. El análisis de npm conserva 16 avisos ya registrados en la auditoría del proyecto, sin críticos; no se actualizan dependencias ajenas a esta entrega.
 - **Estado:** preparada para el despliegue automático GitHub main → Cloudflare. El commit, resultado y pruebas públicas se registrarán al confirmar la publicación.
+
+## Versión: 2026-10-08 — QR, taller de texto y contraseñas locales
+
+- **Estado:** publicada y verificada en producción.
+- **Commit de producto:** `b63011f7e7a7f678222414911959b33a946dacad` (`feat: añadir QR, taller de texto y generador de contraseñas local`).
+- **Cambios:** N-01 generación QR texto/URL/Wi-Fi/vCard, PNG/SVG y lectura local de imágenes; N-02 limpieza y orden TXT, conteo, comparación, deshacer, copia y descarga en Worker cancelable; N-03 contraseñas criptográficas y frases con diccionario EFF local. Catálogo de 15 herramientas, navegación/sitemap y categoría Utilidades. Las tres rutas excluyen scripts opcionales de medición/publicidad y limpian entradas/resultados al salir y volver por historial. Se conserva el índice y la clasificación documental bajo `docs/`.
+- **Dependencias y licencias:** qrcode 1.5.4 MIT, jsQR 1.4.0 Apache-2.0 y tipos qrcode 1.5.6; lista EFF bajo CC BY 4.0. Atribuciones y licencias completas incluidas.
+- **Variables modificadas:** ninguna.
+- **Validación local:** `npm ci`, lint, TypeScript, build, `git diff --cached --check` y 35 pruebas de algoritmos correctos (25 nuevas y 10 existentes). Quince comprobaciones de navegador aprobadas en la entrega local.
+- **Despliegue:** automático GitHub main → Cloudflare. Los checks Workers Builds: herramientas y Cloudflare Pages finalizaron con éxito para el commit de producto. Referencias de despliegue: Workers `ea9337d9-7c2b-4bce-944c-4124a32f5706`, Pages `87b83dd1-6b65-4ea6-8285-6d5283879462`.
+- **Verificación pública:** quince comprobaciones de navegador correctas en la URL oficial: exportación PNG/SVG decodificada, lector Worker, texto/copias/descargas byte por byte, codificación estricta, cancelación, contraseñas/frases y fallos de Crypto, historial/BFCache, privacidad con consentimiento aceptado y rechazado, teclado, móvil a 320 px y ambos temas. Veintitrés rutas responden HTTP 200, incluyendo las 15 herramientas, páginas informativas, robots, sitemap, ads y licencias QR. Directorio y sitemap incluyen las tres rutas nuevas.
+- **URL verificada:** [página oficial](https://herramientas.enrique-lazaro-dulktravor.workers.dev/), [QR](https://herramientas.enrique-lazaro-dulktravor.workers.dev/herramientas/qr), [texto](https://herramientas.enrique-lazaro-dulktravor.workers.dev/herramientas/texto) y [contraseñas](https://herramientas.enrique-lazaro-dulktravor.workers.dev/herramientas/contrasenas).
+- **Límites:** cámara QR omitida como ampliación opcional; lectura desde PNG/JPEG/WebP. Texto hasta 1 MiB y 50.000 líneas; el portapapeles puede adaptar los saltos según el sistema y los TXT conservan los bytes. Diccionario de frases en inglés. No se anuncia funcionamiento sin conexión ni se certifican navegadores distintos del probado.
+- **Cierre:** registro y estado de N-01 a N-03 actualizados en un commit documental posterior, sin cambios de producto.

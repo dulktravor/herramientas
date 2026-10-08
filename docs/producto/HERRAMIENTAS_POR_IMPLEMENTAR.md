@@ -8,9 +8,9 @@ La fuente ejecutable es `lib/site.ts`; el directorio está en `components/tool-d
 
 | Herramienta | Ruta | Seguimiento |
 | --- | --- | --- |
-| Crear y leer QR | `/herramientas/qr` | N-01; comprobada localmente, publicación pendiente |
-| Limpiar y ordenar texto | `/herramientas/texto` | N-02; comprobada localmente, publicación pendiente |
-| Generar contraseñas y frases | `/herramientas/contrasenas` | N-03; comprobada localmente, publicación pendiente |
+| Crear y leer QR | `/herramientas/qr` | N-01; publicada y verificada |
+| Limpiar y ordenar texto | `/herramientas/texto` | N-02; publicada y verificada |
+| Generar contraseñas y frases | `/herramientas/contrasenas` | N-03; publicada y verificada |
 | Estudio de imágenes | `/herramientas/imagenes` | M-04 |
 | Organizar PDF | `/herramientas/pdf` | M-05 |
 | Limpiar metadatos | `/herramientas/metadatos` | M-11 |
@@ -30,7 +30,7 @@ Las ampliaciones se mantienen en [MEJORAS_HERRAMIENTAS_EXISTENTES.md](../planifi
 
 La auditoría de competidores y la priorización están en [AUDITORIA_COMPARATIVA.md](../auditorias/AUDITORIA_COMPARATIVA.md). Las candidatas se evalúan para procesamiento local, utilidad general, accesibilidad y límites claros. Una recomendación no equivale a una herramienta implementada o publicada.
 
-El alcance inicial, las dependencias candidatas y los criterios de aceptación de las diez oportunidades se desarrollan en [PROPUESTAS_NUEVAS_HERRAMIENTAS.md](../planificacion/PROPUESTAS_NUEVAS_HERRAMIENTAS.md). N-01 a N-03 están completadas y comprobadas localmente, pendientes de publicación; N-04 a N-10 siguen pendientes de implementación.
+El alcance inicial, las dependencias candidatas y los criterios de aceptación de las diez oportunidades se desarrollan en [PROPUESTAS_NUEVAS_HERRAMIENTAS.md](../planificacion/PROPUESTAS_NUEVAS_HERRAMIENTAS.md). N-01 a N-03 están publicadas y verificadas en la página oficial desde el 8 de octubre de 2026; N-04 a N-10 siguen pendientes de implementación.
 
 ## Propuestas históricas sin reactivación
 
