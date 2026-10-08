@@ -28,7 +28,7 @@
   ```
 - **Motivo:** Facilitar la ejecución de despliegues directos hacia Cloudflare Workers usando la configuración generada por Vinext (`dist/server/wrangler.json`).
 
-### `REGISTRO_DESPLIEGUE.md`
+### [REGISTRO_DESPLIEGUE.md](REGISTRO_DESPLIEGUE.md)
 - **Archivo Nuevo:** Este documento con la bitácora completa de cambios, arquitectura y pasos tomados.
 
 ---
@@ -307,7 +307,7 @@ También se realizaron estos ajustes:
 - `components/brand-logo.tsx`
 - `components/theme-toggle.tsx`
 - `public/ceronube-mark.svg`
-- `GUIA_DESPLIEGUE_ACTUALIZACIONES.md`
+- [GUIA_DESPLIEGUE_ACTUALIZACIONES.md](../operacion/GUIA_DESPLIEGUE_ACTUALIZACIONES.md)
 - `branding/PROPUESTAS_DE_MARCA.md`
 - `branding/archivo-claro-concepto.png`
 - `branding/listo-kit-concepto.png`
@@ -329,7 +329,7 @@ También se realizaron estos ajustes:
 - `lib/site.ts`
 - `public/favicon.svg`
 - `public/og.png`
-- `REGISTRO_DESPLIEGUE.md`
+- [REGISTRO_DESPLIEGUE.md](REGISTRO_DESPLIEGUE.md)
 
 No se modificó la lógica de procesamiento de imágenes, PDF, OCR, metadatos, escaneo o conversión de datos.
 
@@ -362,7 +362,7 @@ Antes de solicitar el despliegue se realizaron las siguientes comprobaciones:
 
 ### Infraestructura aplicable
 
-El procedimiento correcto para este repositorio es el descrito en `GUIA_DESPLIEGUE_ACTUALIZACIONES.md`:
+El procedimiento correcto para este repositorio es el descrito en [GUIA_DESPLIEGUE_ACTUALIZACIONES.md](../operacion/GUIA_DESPLIEGUE_ACTUALIZACIONES.md):
 
 1. Validación local con lint, build y pruebas representativas.
 2. Creación de un commit en la rama `main`.
@@ -535,3 +535,12 @@ La presencia de `.openai/hosting.json` no sustituye la infraestructura de produc
 - **Verificación pública:** nueve pruebas de navegador correctas en la URL oficial y 19 rutas HTTP 200. OCR y escáner muestran la nueva versión; PDF buscable verificado por extracción de texto, lote de 20 páginas, móvil y regresiones correctos.
 - **URL verificada:** https://herramientas.enrique-lazaro-dulktravor.workers.dev/.
 - **Cierre:** este registro y la hoja de mejoras se actualizan en un commit documental sin cambios de producto.
+
+## Bitácora: 2026-10-08 — QR, texto y contraseñas
+
+- **Autorización:** el usuario solicitó publicar la actualización después de completar las tres primeras propuestas con agentes paralelos.
+- **Cambios preparados:** QR para texto/URL/Wi-Fi/vCard con PNG/SVG y lector local; taller TXT con Worker, comparación, deshacer y descarga; contraseñas criptográficas y frases EFF locales. Catálogo de 15 utilidades, sitemap, categoría Utilidades y aislamiento frente a scripts opcionales de publicidad/medición.
+- **Documentación:** se conserva la reorganización existente bajo `docs/` y se incluyen especificaciones, decisiones, límites, licencias y evidencia de N-01 a N-03.
+- **Validación previa:** instalación reproducible `npm ci`, lint, TypeScript, build y 35 pruebas de algoritmos correctos. Las 15 comprobaciones de navegador de la entrega local pasaron; se repetirán en la página oficial tras el despliegue.
+- **Variables modificadas:** ninguna. El análisis de npm conserva 16 avisos ya registrados en la auditoría del proyecto, sin críticos; no se actualizan dependencias ajenas a esta entrega.
+- **Estado:** preparada para el despliegue automático GitHub main → Cloudflare. El commit, resultado y pruebas públicas se registrarán al confirmar la publicación.

@@ -29,6 +29,7 @@ export default function PrivacyPage() {
       <section>
         <h2>Medición y publicidad opcionales</h2>
         <p>Puedes autorizar por separado los anuncios contextuales, la personalización publicitaria y la medición agregada. Los anuncios contextuales se seleccionan principalmente según el contenido que estás viendo; los personalizados pueden utilizar intereses y otras señales autorizadas.</p>
+        <p>Las herramientas de QR, texto y contraseñas no cargan publicidad ni medición, incluso si has aceptado esos servicios. Al entrar desde una página que ya los cargó, se abre un documento nuevo antes de mostrar los campos privados.</p>
         <p>Si desactivas la personalización pero mantienes los anuncios, el sitio solicitará anuncios no personalizados. Google puede seguir procesando determinadas señales técnicas para entregar, medir y proteger la publicidad contra fraude, conforme a la normativa aplicable.</p>
       </section>
       <section>

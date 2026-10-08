@@ -48,8 +48,8 @@ const trustPoints = [
 const steps = [
   {
     number: '01',
-    title: 'Elige tus archivos',
-    description: 'Arrástralos o selecciónalos desde tu dispositivo.',
+    title: 'Prepara la entrada',
+    description: 'Elige archivos, escribe texto o ajusta las opciones.',
     icon: Upload,
   },
   {
@@ -60,8 +60,8 @@ const steps = [
   },
   {
     number: '03',
-    title: 'Descarga',
-    description: 'Obtén el archivo final directamente, sin esperas.',
+    title: 'Obtén el resultado',
+    description: 'Copia o descarga el resultado desde tu dispositivo.',
     icon: Download,
   },
 ];
@@ -165,8 +165,8 @@ export default function Home() {
             Resuelve aquí. <span className="text-primary">No subas nada.</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-balance text-base leading-7 text-muted-foreground sm:text-lg">
-            Utilidades rápidas para imágenes, PDF, audio, vídeo, ZIP, tipografías, EPUB y datos que
-            procesan tus archivos directamente en el navegador. Sin registro,
+            Utilidades para archivos, texto, códigos QR y contraseñas que
+            trabajan directamente en el navegador. Sin registro,
             sin esperas y con privacidad por diseño.
           </p>
           <div className="mx-auto mt-10 grid max-w-xl grid-cols-3 overflow-hidden rounded-2xl border border-border bg-card/75 text-left shadow-sm backdrop-blur">

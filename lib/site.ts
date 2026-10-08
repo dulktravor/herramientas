@@ -8,9 +8,12 @@ export const siteName = 'CeroNube';
 export const siteTagline = 'Resuelve aquí. No subas nada.';
 
 export const siteDescription =
-  'Utilidades privadas para imágenes, PDF, vídeo, audio, ZIP, tipografías, EPUB y datos que procesan tus archivos directamente en el navegador.';
+  'Utilidades privadas para archivos, texto, códigos QR y contraseñas que trabajan directamente en tu navegador.';
 
 export const publicTools = [
+  { name: 'Crear y leer QR', description: 'Crea QR para texto, enlaces, Wi-Fi y contactos; lee imágenes localmente.', path: '/herramientas/qr' },
+  { name: 'Limpiar y ordenar texto', description: 'Limpia listas y texto, cuenta palabras y descarga TXT en tu navegador.', path: '/herramientas/texto' },
+  { name: 'Generar contraseñas y frases', description: 'Genera contraseñas y frases aleatorias en tu dispositivo sin guardar secretos.', path: '/herramientas/contrasenas' },
   { name: 'Taller EPUB', description: 'Crea y reorganiza libros, edita capítulos y metadatos, repara el índice y extrae texto localmente.', path: '/herramientas/epub' },
   { name: 'Laboratorio de fuentes', description: 'Inspecciona y convierte fuentes, crea muestras y subconjuntos en tu navegador.', path: '/herramientas/fuentes' },
   {

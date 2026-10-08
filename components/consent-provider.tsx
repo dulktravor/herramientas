@@ -1,21 +1,23 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, useSyncExternalStore } from 'react';
 import { BarChart3, Cookie, Megaphone, Settings2, ShieldCheck, Sparkles } from 'lucide-react';
 
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
+import { isPrivateWorkspace } from '@/lib/privacy-routes';
 
 export type ConsentSettings = { advertising: boolean; personalizedAdvertising: boolean; analytics: boolean };
-type ConsentContextValue = { hasDecision: boolean; settings: ConsentSettings; openPreferences: () => void; saveSettings: (settings: ConsentSettings) => void };
+type ConsentContextValue = { hasDecision: boolean; settings: ConsentSettings; optionalServicesAllowed: boolean; openPreferences: () => void; saveSettings: (settings: ConsentSettings) => void };
 
 const storageKey = 'herramientas-consent-v2';
 const legacyStorageKey = 'herramientas-consent-v1';
 const consentEvent = 'herramientas-consent-change';
 const necessarySettings: ConsentSettings = { advertising: false, personalizedAdvertising: false, analytics: false };
 const acceptedSettings: ConsentSettings = { advertising: true, personalizedAdvertising: true, analytics: true };
-const ConsentContext = createContext<ConsentContextValue>({ hasDecision: false, settings: necessarySettings, openPreferences: () => undefined, saveSettings: () => undefined });
+const ConsentContext = createContext<ConsentContextValue>({ hasDecision: false, settings: necessarySettings, optionalServicesAllowed: true, openPreferences: () => undefined, saveSettings: () => undefined });
 
 function readStoredConsent() {
   return window.localStorage.getItem(storageKey) ?? window.localStorage.getItem(legacyStorageKey);
@@ -53,11 +55,23 @@ function appendExternalScript(id: string, src: string, attributes: Record<string
 }
 
 export function ConsentProvider({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const optionalServicesAllowed = !isPrivateWorkspace(pathname ?? '/');
   const storedConsent = useSyncExternalStore(subscribeConsent, readStoredConsent, () => null);
   const hydrated = useSyncExternalStore(subscribeHydration, () => true, () => false);
   const consent = useMemo(() => parseConsent(storedConsent), [storedConsent]);
+  // A script already executed on another route survives a client navigation.
+  // Keep private inputs unmounted until a fresh document stops that code.
+  const needsCleanDocument = hydrated && !optionalServicesAllowed && Boolean(
+    document.getElementById('cloudflare-web-analytics') || document.getElementById('google-adsense'),
+  );
 
   useEffect(() => {
+    if (needsCleanDocument) window.location.reload();
+  }, [needsCleanDocument]);
+
+  useEffect(() => {
+    if (!optionalServicesAllowed) return;
     const analyticsToken = process.env.NEXT_PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
     const adsenseClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
     if (consent.settings.analytics && analyticsToken) {
@@ -69,7 +83,7 @@ export function ConsentProvider({ children }: { children: React.ReactNode }) {
       queue.requestNonPersonalizedAds = consent.settings.personalizedAdvertising ? 0 : 1;
       appendExternalScript('google-adsense', `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(adsenseClientId)}`, { crossorigin: 'anonymous' });
     }
-  }, [consent.settings]);
+  }, [consent.settings, optionalServicesAllowed]);
 
   const saveSettings = useCallback((next: ConsentSettings) => {
     const normalized = { ...next, personalizedAdvertising: next.advertising && next.personalizedAdvertising };
@@ -85,11 +99,11 @@ export function ConsentProvider({ children }: { children: React.ReactNode }) {
     }
   }, [consent.settings]);
   const openPreferences = useCallback(() => { document.getElementById('preferencias-publicidad')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, []);
-  const value = useMemo(() => ({ ...consent, openPreferences, saveSettings }), [consent, openPreferences, saveSettings]);
+  const value = useMemo(() => ({ ...consent, optionalServicesAllowed, openPreferences, saveSettings }), [consent, optionalServicesAllowed, openPreferences, saveSettings]);
 
   return (
     <ConsentContext.Provider value={value}>
-      {children}
+      {needsCleanDocument ? <output className="block p-6">Abriendo la herramienta en una página sin servicios opcionales…</output> : children}
       {hydrated && !consent.hasDecision ? (
         <aside className="fixed inset-x-3 bottom-3 z-50 mx-auto max-w-3xl rounded-2xl bg-card p-4 shadow-[0_24px_80px_color-mix(in_oklch,var(--foreground)_20%,transparent)] ring-1 ring-foreground/15 sm:p-5" aria-label="Preferencias de privacidad">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center">

@@ -4,7 +4,7 @@
 
 Este documento es la hoja de ruta oficial para mejorar las herramientas que ya están publicadas en CeroNube.
 
-Su objetivo es completar los flujos actuales, aumentar su utilidad cotidiana y mantener una experiencia coherente, privada y comprensible. No se utilizará para recuperar como herramientas independientes las propuestas descartadas de `HERRAMIENTAS_POR_IMPLEMENTAR.md`.
+Su objetivo es completar los flujos actuales, aumentar su utilidad cotidiana y mantener una experiencia coherente, privada y comprensible. No se utilizará para recuperar como herramientas independientes las propuestas descartadas de [HERRAMIENTAS_POR_IMPLEMENTAR.md](../producto/HERRAMIENTAS_POR_IMPLEMENTAR.md).
 
 ## Regla obligatoria de seguimiento
 
@@ -46,7 +46,7 @@ Todas las mejoras deben respetar estos criterios:
 - Los recursos temporales y las URL de objeto deben liberarse correctamente.
 - Los controles deben funcionar con teclado y pantallas táctiles.
 - Cada mejora debe probarse en escritorio y en una vista móvil representativa.
-- No deben incorporarse funciones que contradigan el descarte de herramientas de `HERRAMIENTAS_POR_IMPLEMENTAR.md`.
+- No deben incorporarse funciones que contradigan el descarte de herramientas de [HERRAMIENTAS_POR_IMPLEMENTAR.md](../producto/HERRAMIENTAS_POR_IMPLEMENTAR.md).
 
 ## Orden recomendado de implementación
 
@@ -507,7 +507,7 @@ Las entradas nuevas deben colocarse inmediatamente debajo de este texto, dejando
 - **Despliegue:** Cloudflare Pages y Workers Builds finalizados con éxito para el commit exacto.
 - **Verificación pública:** las nueve pruebas de navegador pasan también en la URL oficial; OCR de imágenes/PDF, texto buscable extraído con PDF.js, TXT editado, cancelación, escáner de 20 páginas, teclado, móvil oscuro, preferencias, CSV/ZIP/PDF y EPUB. Las 19 rutas verificadas responden HTTP 200.
 - **Privacidad:** no se detectaron solicitudes POST/PUT/PATCH en los flujos de archivos instrumentados. Se utilizaron documentos sintéticos; capturas y resultados excluidos de Git.
-- **Limitaciones y seguimiento:** `AUDITORIA_PROYECTO.md`; 16 avisos de dependencias, sin críticos. Nuevas propuestas solo investigadas.
+- **Limitaciones y seguimiento:** [AUDITORIA_PROYECTO.md](../auditorias/AUDITORIA_PROYECTO.md); 16 avisos de dependencias, sin críticos. Nuevas propuestas solo investigadas.
 ### 2026-10-08 — M-01 y M-02 — auditoría y preparación de publicación
 
 - **Estado anterior:** En pruebas, sin commit ni despliegue.
@@ -515,7 +515,7 @@ Las entradas nuevas deben colocarse inmediatamente debajo de este texto, dejando
 - **Trabajo realizado:** Revisados los cambios pendientes, corregidas cancelación OCR, alineación de PDF, límites de rasterización, guardas de cargas y liberación de recursos. Añadida explicación de edición TXT frente a PDF. Escáner con prueba de 20 páginas, cancelación, teclado e inválidos; OCR real con imágenes/PDF, TXT, PDF con texto extraíble, límite de 30 páginas y cancelación.
 - **Archivos modificados:** componentes del escáner/OCR, motores `lib/perspective.ts` y `lib/ocr-document.ts`, páginas, catálogo y `tests/document-tools.test.mjs` más pruebas unitarias.
 - **Pruebas realizadas:** npm ci, lint, TypeScript, build, 10 pruebas unitarias y 9 flujos de navegador; verificación adicional de texto PDF. Pantallas móviles oscuras revisadas. Sin solicitudes POST/PUT/PATCH durante los flujos instrumentados.
-- **Limitaciones:** Ver `AUDITORIA_PROYECTO.md`; PDF conserva reconocimiento por página, TXT/copia admiten corrección completa; descarga inicial puede requerir terminar al cancelar. M-06 y mejoras adicionales quedan pendientes.
+- **Limitaciones:** Ver [AUDITORIA_PROYECTO.md](../auditorias/AUDITORIA_PROYECTO.md); PDF conserva reconocimiento por página, TXT/copia admiten corrección completa; descarga inicial puede requerir terminar al cancelar. M-06 y mejoras adicionales quedan pendientes.
 - **Próximo paso:** M-01/M-02 publicadas y verificadas; continuar mejoras pendientes según prioridad.
 - **Autorización actual:** El usuario solicitó explícitamente publicar las actualizaciones el 8 de octubre; sustituye la instrucción histórica de no publicar del 17 de septiembre.
 ### 2026-09-17 — M-02 — OCR multipágina y PDF buscable
@@ -523,7 +523,7 @@ Las entradas nuevas deben colocarse inmediatamente debajo de este texto, dejando
 - **Estado anterior:** En desarrollo.
 - **Estado nuevo:** En pruebas.
 - **Trabajo realizado:** Se añadió carga conjunta de imágenes y PDF, preparación local de páginas, ordenación, giro y mejora visual por página, reconocimiento secuencial con un único trabajador, progreso global, cancelación, edición del texto, avisos de baja confianza y exportación TXT o PDF buscable con una capa de texto invisible alineada con las palabras reconocidas.
-- **Archivos modificados:** `components/ocr-studio.tsx`, `lib/ocr-document.ts`, `tests/ocr-document.test.mjs`, `app/herramientas/ocr/page.tsx`, `components/tool-directory.tsx`, `lib/site.ts` y `MEJORAS_HERRAMIENTAS_EXISTENTES.md`.
+- **Archivos modificados:** `components/ocr-studio.tsx`, `lib/ocr-document.ts`, `tests/ocr-document.test.mjs`, `app/herramientas/ocr/page.tsx`, `components/tool-directory.tsx`, `lib/site.ts` y [MEJORAS_HERRAMIENTAS_EXISTENTES.md](MEJORAS_HERRAMIENTAS_EXISTENTES.md).
 - **Decisiones técnicas:** Los PDF se rasterizan localmente con PDF.js antes del OCR; Tesseract reutiliza un solo trabajador para todas las páginas y se termina tanto al cancelar como al desmontar la pantalla; el PDF buscable se compone localmente con PDF-Lib. Se informa el tamaño aproximado de la descarga inicial del motor y de los idiomas.
 - **Pruebas realizadas:** Pruebas automatizadas de aplanado de palabras, conservación del número de página y generación/carga de PDF; TypeScript sin errores; lint sin errores; compilación de producción satisfactoria; carga local de la pantalla sin errores ni advertencias en consola.
 - **Limitaciones o riesgos:** Falta probar el reconocimiento completo descargando modelos reales, archivos inválidos, cancelación durante OCR, el límite de 30 páginas, selección de texto en lectores PDF distintos y vista móvil con documentos reales. La selección de una región concreta y la exportación estructurada siguen pendientes como ampliaciones.
@@ -535,7 +535,7 @@ Las entradas nuevas deben colocarse inmediatamente debajo de este texto, dejando
 - **Estado anterior:** En desarrollo.
 - **Estado nuevo:** En pruebas.
 - **Trabajo realizado:** Se sustituyó el recorte rectangular por transformación de perspectiva de cuatro puntos, detección automática inicial, edición manual con ratón, tacto o teclado, previsualización corregida, ajustes independientes de giro, brillo, contraste y color por página, captura desde cámara y controles de formato, margen y calidad del PDF. La exportación ofrece progreso y cancelación.
-- **Archivos modificados:** `components/document-scanner.tsx`, `lib/perspective.ts`, `tests/perspective.test.mjs`, `app/herramientas/escaner/page.tsx`, `components/tool-directory.tsx`, `lib/site.ts` y `MEJORAS_HERRAMIENTAS_EXISTENTES.md`.
+- **Archivos modificados:** `components/document-scanner.tsx`, `lib/perspective.ts`, `tests/perspective.test.mjs`, `app/herramientas/escaner/page.tsx`, `components/tool-directory.tsx`, `lib/site.ts` y [MEJORAS_HERRAMIENTAS_EXISTENTES.md](MEJORAS_HERRAMIENTAS_EXISTENTES.md).
 - **Decisiones técnicas:** Se implementó una homografía local sin enviar imágenes a servidores. La detección usa una muestra reducida y siempre permite corrección manual. La previsualización y la exportación comparten el mismo proceso de renderizado para evitar diferencias; durante el cálculo se cede periódicamente el control a la interfaz.
 - **Pruebas realizadas:** Pruebas automatizadas de proyección, dimensiones, detección de una hoja y recuperación segura; TypeScript sin errores; lint sin errores; compilación de producción satisfactoria; carga local de la pantalla sin errores ni advertencias en consola.
 - **Limitaciones o riesgos:** Falta la prueba manual con fotografías reales, un lote de 20 páginas, archivo inválido, cancelación bajo carga y validación táctil/móvil. La transferencia directa a OCR u Organizar PDF pertenece a M-06 y no se incluyó en esta entrega.
@@ -547,8 +547,8 @@ Las entradas nuevas deben colocarse inmediatamente debajo de este texto, dejando
 - **Estado anterior:** No existía una hoja de ruta consolidada para mejorar las herramientas publicadas.
 - **Estado nuevo:** Pendiente.
 - **Trabajo realizado:** Se documentaron las mejoras recomendadas, su orden de implementación, criterios de aceptación y el sistema obligatorio de seguimiento.
-- **Archivos modificados:** `MEJORAS_HERRAMIENTAS_EXISTENTES.md`.
-- **Decisiones técnicas:** Se priorizaron mejoras que completan flujos ya existentes y se mantuvieron descartadas las herramientas no implementadas de `HERRAMIENTAS_POR_IMPLEMENTAR.md`.
+- **Archivos modificados:** [MEJORAS_HERRAMIENTAS_EXISTENTES.md](MEJORAS_HERRAMIENTAS_EXISTENTES.md).
+- **Decisiones técnicas:** Se priorizaron mejoras que completan flujos ya existentes y se mantuvieron descartadas las herramientas no implementadas de [HERRAMIENTAS_POR_IMPLEMENTAR.md](../producto/HERRAMIENTAS_POR_IMPLEMENTAR.md).
 - **Pruebas realizadas:** Revisión manual de estructura y consistencia del documento.
 - **Limitaciones o riesgos:** Las estimaciones de complejidad deberán ajustarse después del análisis técnico de cada mejora.
 - **Próximo paso:** Iniciar M-01 con el diseño técnico y visual de la corrección de perspectiva.

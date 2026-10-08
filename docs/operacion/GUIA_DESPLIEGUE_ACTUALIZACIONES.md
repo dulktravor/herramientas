@@ -458,7 +458,7 @@ Para Cloudflare Web Analytics hay que comprobar que la medición solo se cargue 
 
 ## 16. Registro de cada publicación
 
-Cada actualización desplegada debería añadirse al final de `REGISTRO_DESPLIEGUE.md` con esta plantilla:
+Cada actualización desplegada debería añadirse al final de [REGISTRO_DESPLIEGUE.md](../historial/REGISTRO_DESPLIEGUE.md) con esta plantilla:
 
 ```markdown
 ## Versión: AAAA-MM-DD — título breve
@@ -507,7 +507,7 @@ No deben registrarse tokens, contraseñas, identificadores privados ni datos per
 - [ ] Probar la función actualizada.
 - [ ] Revisar una muestra de rutas importantes.
 - [ ] Confirmar el commit desplegado.
-- [ ] Documentar la versión en `REGISTRO_DESPLIEGUE.md`.
+- [ ] Documentar la versión en [REGISTRO_DESPLIEGUE.md](../historial/REGISTRO_DESPLIEGUE.md).
 
 ## 18. Regla principal
 

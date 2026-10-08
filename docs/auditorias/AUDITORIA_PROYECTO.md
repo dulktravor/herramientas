@@ -4,9 +4,9 @@ Fecha: 8 de octubre de 2026. Referencia inicial: `06d1248` en `main` y `origin/m
 
 ## Resultado
 
-Se identificaron mejoras del escáner y del OCR del 17 de septiembre que permanecían sin publicar. Se completaron pruebas y correcciones, y se publicó el commit `084f4c5` por GitHub → Cloudflare. Cloudflare confirmó éxito y las nueve pruebas de navegador pasaron también en producción; las 19 rutas revisadas respondieron HTTP 200. La evidencia se conserva en `REGISTRO_DESPLIEGUE.md`.
+Se identificaron mejoras del escáner y del OCR del 17 de septiembre que permanecían sin publicar. Se completaron pruebas y correcciones, y se publicó el commit `084f4c5` por GitHub → Cloudflare. Cloudflare confirmó éxito y las nueve pruebas de navegador pasaron también en producción; las 19 rutas revisadas respondieron HTTP 200. La evidencia se conserva en [REGISTRO_DESPLIEGUE.md](../historial/REGISTRO_DESPLIEGUE.md).
 
-El catálogo tiene 12 herramientas; no se añadieron las candidatas de la investigación como funciones disponibles. `AUDITORIA_COMPARATIVA.md` recoge siete referencias y diez oportunidades nuevas.
+El catálogo tiene 12 herramientas; no se añadieron las candidatas de la investigación como funciones disponibles. [AUDITORIA_COMPARATIVA.md](AUDITORIA_COMPARATIVA.md) recoge siete referencias y diez oportunidades nuevas.
 
 ## Alcance y límites
 
@@ -58,9 +58,9 @@ Fuentes del diagnóstico: `npm audit` del registro npm; ejemplos de avisos [brac
 
 ## Purga documental
 
-Retirado `branding/PROPUESTAS_DE_MARCA.md`: propuesta exploratoria posterior reemplazada por `DESIGN.md`, con alternativas de marca ya resueltas y catálogo de seis herramientas obsoleto. Recuperable en Git; las menciones antiguas de la bitácora son históricas.
+Retirado `branding/PROPUESTAS_DE_MARCA.md`: propuesta exploratoria posterior reemplazada por [DESIGN.md](../diseno/DESIGN.md), con alternativas de marca ya resueltas y catálogo de seis herramientas obsoleto. Recuperable en Git; las menciones antiguas de la bitácora son históricas.
 
-Consolidado `HERRAMIENTAS_POR_IMPLEMENTAR.md`: catálogo ejecutable actual, criterios obligatorios y antecedentes sin reactivar decisiones descartadas. Añadido `README.md` como índice. Conservados diseño, guía, registro y hoja de mejoras porque tienen usos distintos. No se purgaron Markdown de dependencias ni documentos personales de output/tmp.
+Consolidado [HERRAMIENTAS_POR_IMPLEMENTAR.md](../producto/HERRAMIENTAS_POR_IMPLEMENTAR.md): catálogo ejecutable actual, criterios obligatorios y antecedentes sin reactivar decisiones descartadas. Añadido [README.md](../../README.md) como índice. Conservados diseño, guía, registro y hoja de mejoras porque tienen usos distintos. No se purgaron Markdown de dependencias ni documentos personales de output/tmp.
 
 ## Seguimiento
 

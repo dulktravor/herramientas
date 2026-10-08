@@ -6,7 +6,7 @@ Fecha de consulta: 8 de octubre de 2026. Alcance: investigación documental de s
 
 Se consultaron páginas oficiales, políticas y repositorios públicos. «Documentado» significa que el responsable lo afirma en una fuente enlazada; no equivale a comprobar el comportamiento de producción. «Código observado» se limita al archivo indicado. No se realizaron capturas de tráfico, pruebas de carga, auditorías completas de código, comprobaciones de accesibilidad ni envíos de archivos a estos servicios. Los juicios de viabilidad y prioridad siguientes son inferencias técnicas, no resultados de implementación.
 
-La referencia de CeroNube es `DESIGN.md`, `app/privacidad/page.tsx` y el catálogo de rutas actual: imágenes, PDF, metadatos, OCR, datos, escáner, audio, vídeo, MIDI, ZIP, fuentes y EPUB. Se leyó también `HERRAMIENTAS_POR_IMPLEMENTAR.md`: audio, vídeo, ZIP, fuentes y EPUB ya tienen rutas y no se presentan aquí como herramientas nuevas.
+La referencia de CeroNube es [DESIGN.md](../diseno/DESIGN.md), `app/privacidad/page.tsx` y el catálogo de rutas actual: imágenes, PDF, metadatos, OCR, datos, escáner, audio, vídeo, MIDI, ZIP, fuentes y EPUB. Se leyó también [HERRAMIENTAS_POR_IMPLEMENTAR.md](../producto/HERRAMIENTAS_POR_IMPLEMENTAR.md): audio, vídeo, ZIP, fuentes y EPUB ya tienen rutas y no se presentan aquí como herramientas nuevas.
 
 Se exige procesamiento local, acceso sin cuenta, ninguna transferencia del contenido o archivo a terceros, resultados descargables, límites visibles y explicación de descargas de motores. La medición y la publicidad de CeroNube deben seguir siendo opcionales y no recibir entradas, nombres de archivo ni resultados.
 
@@ -25,6 +25,8 @@ Se exige procesamiento local, acceso sin cuenta, ninguna transferencia del conte
 ## Herramientas nuevas prioritarias
 
 Estas diez oportunidades no estaban descritas como herramientas independientes en la hoja de ruta leída. Las prioridades son cualitativas, basadas en utilidad general, coste probable y ajuste de privacidad; no se investigaron volúmenes de búsqueda ni demanda cuantitativa.
+
+El desarrollo de su alcance, entradas, resultados, límites y criterios de aceptación está en [PROPUESTAS_NUEVAS_HERRAMIENTAS.md](../planificacion/PROPUESTAS_NUEVAS_HERRAMIENTAS.md). Ese documento organiza trabajo futuro; las propuestas aún no están implementadas.
 
 | Orden | Propuesta y uso cotidiano | Viabilidad local y alcance inicial | Condiciones de aceptación |
 | ---: | --- | --- | --- |

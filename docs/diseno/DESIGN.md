@@ -464,3 +464,7 @@ Toda evolución visual debe empezar por los tokens o componentes compartidos cua
 ### Taller EPUB — Libros electrónicos
 
 Ruta /herramientas/epub. Editor de lectura con lista lateral de capítulos, vista previa serif aislada y controles del sistema compartido. Categoría ámbar con contraste adaptado a tema oscuro. EPUB, Markdown y HTML locales; límites visibles, cancelación, validación previa a la descarga y rutas editables para reparar recursos.
+
+### Utilidades — QR, texto y contraseñas
+
+Rutas `/herramientas/qr`, `/herramientas/texto` y `/herramientas/contrasenas`. Categoría Utilidades con superficies `secondary` y texto `secondary-foreground`, iconos QrCode, TextCursorInput y KeyRound. Conservan el shell, los controles, temas y foco compartidos. Los campos privados y resultados no conviven con scripts opcionales de publicidad o medición; se conservan en memoria y se limpian al salir, también al volver desde el historial. Los resultados se copian o descargan por acción explícita.

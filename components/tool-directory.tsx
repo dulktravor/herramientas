@@ -15,6 +15,9 @@ import {
   ScanText,
   Search,
   ShieldEllipsis,
+  QrCode,
+  KeyRound,
+  TextCursorInput,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
@@ -27,11 +30,12 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
+import { isPrivateWorkspace } from '@/lib/privacy-routes';
 
 type ToolItem = {
   name: string;
   description: string;
-  category: 'imagenes' | 'pdf' | 'datos' | 'audio' | 'video' | 'comprimidos' | 'tipografias' | 'libros';
+  category: 'imagenes' | 'pdf' | 'datos' | 'audio' | 'video' | 'comprimidos' | 'tipografias' | 'libros' | 'utilidades';
   keywords: string;
   icon: LucideIcon;
   stage: 'Disponible' | 'Siguiente etapa';
@@ -39,6 +43,9 @@ type ToolItem = {
 };
 
 const tools: ToolItem[] = [
+  { name: 'Crear y leer QR', description: 'Crea QR para texto, enlaces, Wi-Fi y contactos; lee una imagen en tu dispositivo.', category: 'utilidades', keywords: 'qr codigo enlace url wifi contacto vcard generar leer escanear png svg', icon: QrCode, stage: 'Disponible', href: '/herramientas/qr' },
+  { name: 'Limpiar y ordenar texto', description: 'Limpia espacios y listas, ordena líneas, cuenta palabras y descarga el resultado como TXT.', category: 'utilidades', keywords: 'texto txt limpiar ordenar duplicados lineas palabras caracteres mayusculas minusculas listas', icon: TextCursorInput, stage: 'Disponible', href: '/herramientas/texto' },
+  { name: 'Generar contraseñas y frases', description: 'Elige caracteres o palabras y genera credenciales aleatorias sin guardar un historial.', category: 'utilidades', keywords: 'contrasena contraseña clave password frase passphrase aleatoria generar credencial', icon: KeyRound, stage: 'Disponible', href: '/herramientas/contrasenas' },
   { name: 'Taller EPUB', description: 'Crea libros, organiza capítulos, cambia portada y metadatos y repara el índice.', category: 'libros', keywords: 'epub libro ebook capítulos markdown html portada autor indice extraer texto', icon: BookOpen, stage: 'Disponible', href: '/herramientas/epub' },
   { name: 'Laboratorio de fuentes', description: 'Inspecciona, prueba y convierte tipografías; crea muestras y subconjuntos locales.', category: 'tipografias', keywords: 'fuentes tipografias ttf otf woff woff2 glifos caracteres letras subconjunto font css', icon: Type, stage: 'Disponible', href: '/herramientas/fuentes' },
   {
@@ -147,6 +154,7 @@ const categories = [
   { id: 'libros', label: 'Libros electrónicos' },
   { id: 'tipografias', label: 'Tipografías' },
   { id: 'todas', label: 'Todas' },
+  { id: 'utilidades', label: 'Utilidades' },
   { id: 'comprimidos', label: 'Comprimidos' },
   { id: 'video', label: 'Vídeo' },
   { id: 'audio', label: 'Audio' },
@@ -156,6 +164,7 @@ const categories = [
 ] as const;
 
 const categoryLabels = {
+  utilidades: 'Utilidades',
   libros: 'Libros electrónicos',
   tipografias: 'Tipografías',
   comprimidos: 'Comprimidos',
@@ -167,6 +176,7 @@ const categoryLabels = {
 } as const;
 
 const categoryStyles = {
+  utilidades: 'bg-secondary text-secondary-foreground',
   libros: 'bg-amber-100 text-amber-900 dark:bg-amber-950 dark:text-amber-200',
   tipografias: 'bg-blue-100 text-blue-900 dark:bg-blue-950 dark:text-blue-200',
   comprimidos:
@@ -293,7 +303,11 @@ export function ToolDirectory() {
                 </CardContent>
               </Card>
             );
-            return tool.href ? (
+            return tool.href && isPrivateWorkspace(tool.href) ? (
+              <a key={tool.name} href={tool.href} className="rounded-xl focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50">
+                {content}
+              </a>
+            ) : tool.href ? (
               <Link
                 key={tool.name}
                 href={tool.href}
