@@ -176,7 +176,15 @@ export function ImageStudio() {
     const { default: JSZip } = await import('jszip');
     const zip = new JSZip();
     completed.forEach((item) => {
-      if (item.result) zip.file(item.result.filename, item.result.blob);
+      if (item.result) {
+        let filename = item.result.filename;
+        let suffix = 2;
+        while (zip.file(filename)) {
+          const dot = item.result.filename.lastIndexOf('.');
+          filename = `${item.result.filename.slice(0, dot)}-${suffix++}${item.result.filename.slice(dot)}`;
+        }
+        zip.file(filename, item.result.blob);
+      }
     });
     const archive = await zip.generateAsync({ type: 'blob' });
     downloadBlob(archive, 'imagenes-optimizadas.zip');

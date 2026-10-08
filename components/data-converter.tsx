@@ -69,6 +69,12 @@ function parseDelimited(input: string, delimiter: ',' | '\t') {
   if (matrix.length < 2) throw new Error('Se necesita una fila de encabezados y al menos una fila de datos.');
 
   const headers = matrix[0].map((header, index) => header.trim() || `columna_${index + 1}`);
+  if (new Set(headers).size !== headers.length) {
+    throw new Error('Los encabezados deben ser únicos. Renombra las columnas repetidas antes de convertir.');
+  }
+  if (matrix.slice(1).some((cells) => cells.length > headers.length)) {
+    throw new Error('Una fila tiene más columnas que los encabezados. Revisa el delimitador y las comillas.');
+  }
   return matrix.slice(1).map((cells) =>
     Object.fromEntries(headers.map((header, index) => [header, cells[index] ?? ''])) as DataRow,
   );

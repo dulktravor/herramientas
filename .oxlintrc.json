@@ -23,6 +23,11 @@
     "typeCheck": true
   },
   "ignorePatterns": [
+    "work/**",
+    "tmp/**",
+    "output/**",
+    ".codex-finalizer/**",
+    ".wrangler/**",
     ".next/**",
     ".vinext/**",
     "out/**",

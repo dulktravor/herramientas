@@ -54,7 +54,7 @@ export const publicTools = [
   },
   {
     name: 'Imagen a texto',
-    description: 'Extrae texto editable de imágenes mediante OCR.',
+    description: 'Reconoce varias imágenes o PDF y exporta texto o un PDF buscable.',
     path: '/herramientas/ocr',
   },
   {
@@ -64,7 +64,7 @@ export const publicTools = [
   },
   {
     name: 'Escáner a PDF',
-    description: 'Convierte fotografías de documentos en un PDF limpio.',
+    description: 'Detecta bordes, corrige la perspectiva y crea un PDF limpio.',
     path: '/herramientas/escaner',
   },
 ] as const;

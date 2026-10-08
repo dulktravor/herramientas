@@ -31,15 +31,19 @@ type PdfPageItem = {
 
 type SourceFile = { name: string; bytes: Uint8Array };
 
-async function createThumbnails(bytes: Uint8Array) {
+async function createThumbnails(bytes: Uint8Array, available: number) {
   const pdfjs = await import('pdfjs-dist');
   pdfjs.GlobalWorkerOptions.workerSrc = new URL(
     '../node_modules/pdfjs-dist/build/pdf.worker.min.mjs',
     import.meta.url,
   ).toString();
-  const document = await pdfjs.getDocument({ data: bytes.slice() }).promise;
+  const loadingTask = pdfjs.getDocument({ data: bytes.slice() });
+  const document = await loadingTask.promise;
   const thumbnails: string[] = [];
-
+  try {
+  if (document.numPages > available) {
+    throw new Error('El organizador admite hasta 100 páginas en total.');
+  }
   for (let pageNumber = 1; pageNumber <= document.numPages; pageNumber += 1) {
     const page = await document.getPage(pageNumber);
     const baseViewport = page.getViewport({ scale: 1 });
@@ -54,8 +58,10 @@ async function createThumbnails(bytes: Uint8Array) {
     thumbnails.push(canvas.toDataURL('image/webp', 0.75));
     page.cleanup();
   }
-  await document.cleanup();
   return thumbnails;
+  } finally {
+    await loadingTask.destroy();
+  }
 }
 
 async function loadSourceDocuments(sourceIds: string[], sources: Map<string, SourceFile>) {
@@ -94,6 +100,7 @@ export function PdfOrganizer() {
   const draggedId = useRef<string | null>(null);
 
   async function addFiles(files: FileList | File[]) {
+    if (loading || exporting) return;
     setError('');
     const selected = Array.from(files).filter((file) => file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf'));
     if (selected.length === 0) {
@@ -111,7 +118,7 @@ export function PdfOrganizer() {
       for (const file of selected.slice(0, 10)) {
         const sourceId = makeId('pdf-source');
         const bytes = new Uint8Array(await file.arrayBuffer());
-        const thumbnails = await createThumbnails(bytes);
+        const thumbnails = await createThumbnails(bytes, 100 - pages.length - nextPages.length);
         if (pages.length + nextPages.length + thumbnails.length > 100) {
           throw new Error('El organizador admite hasta 100 páginas en total.');
         }

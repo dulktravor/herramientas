@@ -116,7 +116,7 @@ const tools: ToolItem[] = [
   {
     name: 'Imagen a texto',
     description:
-      'Extrae texto editable de capturas y documentos fotografiados.',
+      'Reconoce varias imágenes o PDF y exporta texto o un PDF buscable.',
     category: 'imagenes',
     keywords: 'ocr texto captura foto escaneo reconocer copiar',
     icon: ScanText,
@@ -134,7 +134,7 @@ const tools: ToolItem[] = [
   },
   {
     name: 'Escáner a PDF',
-    description: 'Corrige fotografías de documentos y crea un PDF limpio.',
+    description: 'Detecta bordes, corrige la perspectiva y crea un PDF limpio.',
     category: 'pdf',
     keywords: 'escaner foto documento perspectiva corregir crear pdf',
     icon: FileScan,

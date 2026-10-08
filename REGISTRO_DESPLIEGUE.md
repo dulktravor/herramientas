@@ -4,7 +4,7 @@
 
 **Primera publicación registrada:** 29 de agosto de 2026
 
-**Última actualización de producto:** 30 de agosto de 2026
+**Última actualización de producto verificada:** 7 de septiembre de 2026; publicación del 8 de octubre en preparación (véase última entrada).
 
 **URL histórica de producción en Cloudflare Workers:** [https://herramientas.enrique-lazaro-dulktravor.workers.dev/](https://herramientas.enrique-lazaro-dulktravor.workers.dev/)
 **Repositorio GitHub:** [https://github.com/dulktravor/herramientas](https://github.com/dulktravor/herramientas)  
@@ -520,3 +520,14 @@ La presencia de `.openai/hosting.json` no sustituye la infraestructura de produc
 - **Resultado:** correcto; ambos totales de la portada pública muestran 12.
 - **URL verificada:** https://herramientas.enrique-lazaro-dulktravor.workers.dev/.
 - **Observaciones:** no hubo cambios funcionales en las herramientas ni en sus límites de procesamiento.
+
+
+## Versión: 2026-10-08 — OCR multipágina, perspectiva y auditoría general
+
+- **Estado:** validación local completa; pendiente envío y comprobación pública.
+- **Cambios:** escáner con cuatro esquinas y ajustes por página; OCR de imágenes/PDF y exportación TXT/PDF buscable; correcciones de consentimiento, recursos de vídeo, nombres ZIP, CSV y límite PDF; dependencias compatibles actualizadas.
+- **Documentación:** purga de propuesta de marca obsoleta, catálogo consolidado, README y auditorías del proyecto y siete competidores. Diez propuestas evaluadas; no implementadas.
+- **Variables modificadas:** ninguna.
+- **Validaciones:** npm ci, lint, TypeScript, build, 10 pruebas unitarias, 9 pruebas de navegador y extracción del texto OCR del PDF; móvil oscuro y ausencia de envíos POST/PUT/PATCH en flujos instrumentados.
+- **Dependencias:** npm audit pasó de 26 avisos (3 críticos) a 16 (0 críticos, 13 altos, 3 moderados); seguimiento en AUDITORIA_PROYECTO.md.
+- **Publicación prevista:** GitHub main → Cloudflare Workers. El envío por sí solo no confirma producción.

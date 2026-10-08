@@ -52,8 +52,6 @@ import {
   type VideoOutputFormat,
   type VideoQualityPreset,
   type VideoResolutionPreset,
-  type VideoTextPosition,
-  type VideoTextSize,
 } from '@/lib/video-processor';
 
 type VideoInfo = {
@@ -119,9 +117,6 @@ export function VideoStudio() {
   const [originalVolume, setOriginalVolume] = useState(100);
   const [extraAudioVolume, setExtraAudioVolume] = useState(100);
 
-  const [overlayText, setOverlayText] = useState('');
-  const [textPosition, setTextPosition] = useState<VideoTextPosition>('bottom');
-  const [textSize, setTextSize] = useState<VideoTextSize>('md');
 
   const [outputFormat, setOutputFormat] = useState<VideoOutputFormat>('mp4');
   const [quality, setQuality] = useState<VideoQualityPreset>('balanced');
@@ -165,10 +160,7 @@ export function VideoStudio() {
   }
 
   function clearResult() {
-    setResult((current) => {
-      if (current) revokeUrl(URL.createObjectURL(current.blob));
-      return null;
-    });
+    setResult(null);
     setNotice('');
   }
 
@@ -409,9 +401,6 @@ export function VideoStudio() {
           extraAudioFile,
           extraAudioVolume,
           subtitlesContent: subtitlesInfo?.content ?? null,
-          overlayText: overlayText.trim() ? overlayText : null,
-          overlayTextPosition: textPosition,
-          overlayTextSize: textSize,
           outputFormat,
           quality,
           fps: outputFormat === 'gif' ? gifFps : videoFps,
@@ -452,7 +441,6 @@ export function VideoStudio() {
     terminateFfmpegEngine();
 
     if (videoInfo) revokeUrl(videoInfo.url);
-    if (result) revokeUrl(URL.createObjectURL(result.blob));
 
     setVideoInfo(null);
     setExtraAudioFile(null);
@@ -463,9 +451,6 @@ export function VideoStudio() {
     setTrimStart(0);
     setTrimEnd(0);
     setCurrentTime(0);
-    setOverlayText('');
-    setTextPosition('bottom');
-    setTextSize('md');
     setMuteOriginal(false);
     setOriginalVolume(100);
     setExtraAudioVolume(100);
@@ -484,6 +469,10 @@ export function VideoStudio() {
     if (!result) return '';
     return URL.createObjectURL(result.blob);
   }, [result]);
+
+  useEffect(() => {
+    return () => { if (resultUrl) URL.revokeObjectURL(resultUrl); };
+  }, [resultUrl]);
 
   return (
     <div className="space-y-6">
@@ -1067,61 +1056,6 @@ export function VideoStudio() {
                     )}
                   </div>
 
-                  {/* Optional Overlay Text */}
-                  <div className="space-y-2 pt-2">
-                    <label htmlFor="overlay-text-input" className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                      Texto adicional superpuesto (marca o rótulo)
-                    </label>
-                    <Input
-                      id="overlay-text-input"
-                      placeholder="Ejemplo: @ceronube · Grabado en directo"
-                      value={overlayText}
-                      onChange={(e) => {
-                        clearResult();
-                        setOverlayText(e.target.value);
-                      }}
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="space-y-1">
-                      <label htmlFor="text-position-select" className="block text-xs text-muted-foreground">
-                        Posición del texto:
-                      </label>
-                      <NativeSelect
-                        id="text-position-select"
-                        value={textPosition}
-                        className="w-full"
-                        onChange={(e) => {
-                          clearResult();
-                          setTextPosition(e.target.value as VideoTextPosition);
-                        }}
-                      >
-                        <NativeSelectOption value="bottom">Inferior (Abajo)</NativeSelectOption>
-                        <NativeSelectOption value="center">Centro</NativeSelectOption>
-                        <NativeSelectOption value="top">Superior (Arriba)</NativeSelectOption>
-                      </NativeSelect>
-                    </div>
-
-                    <div className="space-y-1">
-                      <label htmlFor="text-size-select" className="block text-xs text-muted-foreground">
-                        Tamaño:
-                      </label>
-                      <NativeSelect
-                        id="text-size-select"
-                        value={textSize}
-                        className="w-full"
-                        onChange={(e) => {
-                          clearResult();
-                          setTextSize(e.target.value as VideoTextSize);
-                        }}
-                      >
-                        <NativeSelectOption value="sm">Pequeño</NativeSelectOption>
-                        <NativeSelectOption value="md">Mediano</NativeSelectOption>
-                        <NativeSelectOption value="lg">Grande</NativeSelectOption>
-                      </NativeSelect>
-                    </div>
-                  </div>
                 </TabsContent>
               </Tabs>
 

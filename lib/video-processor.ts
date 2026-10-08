@@ -171,7 +171,7 @@ export async function loadFfmpegEngine(
 export function terminateFfmpegEngine(): void {
   if (activeFfmpegInstance) {
     try {
-      // Calling terminate on the internal worker if available or re-instantiating
+      activeFfmpegInstance.terminate();
       isCoreLoaded = false;
       activeFfmpegInstance = null;
     } catch {
@@ -371,6 +371,7 @@ export async function processVideoJob(
       } else if (hasExtraAudioInput) {
         // Use extra audio
         args.push('-map', '0:v:0', '-map', '1:a:0', '-c:a', options.outputFormat === 'webm' ? 'libopus' : 'aac', '-b:a', '128k');
+        args.push('-af', `volume=${((options.extraAudioVolume ?? 100) / 100).toFixed(2)}`);
       } else {
         // Keep original audio with atempo / volume
         const afFilters: string[] = [];

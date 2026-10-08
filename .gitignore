@@ -37,4 +37,7 @@ next-env.d.ts
 /.wrangler/
 /outputs/
 /work/
+/output/
+/tmp/
+/.codex-finalizer/
 *.tsbuildinfo

@@ -76,7 +76,14 @@ export function ConsentProvider({ children }: { children: React.ReactNode }) {
     window.localStorage.setItem(storageKey, JSON.stringify(normalized));
     window.localStorage.removeItem(legacyStorageKey);
     window.dispatchEvent(new Event(consentEvent));
-  }, []);
+    // Removing a script tag does not stop its already running code. A reload
+    // starts a fresh document where revoked services cannot be initialized.
+    if ((consent.settings.analytics && !normalized.analytics) ||
+      (consent.settings.advertising && (!normalized.advertising ||
+        consent.settings.personalizedAdvertising !== normalized.personalizedAdvertising))) {
+      window.location.reload();
+    }
+  }, [consent.settings]);
   const openPreferences = useCallback(() => { document.getElementById('preferencias-publicidad')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, []);
   const value = useMemo(() => ({ ...consent, openPreferences, saveSettings }), [consent, openPreferences, saveSettings]);
 
@@ -107,6 +114,14 @@ export function useConsent() { return useContext(ConsentContext); }
 
 export function ConsentPreferences() {
   const { hasDecision, settings, saveSettings } = useConsent();
+  return <ConsentPreferencesForm key={JSON.stringify(settings)} hasDecision={hasDecision} settings={settings} saveSettings={saveSettings} />;
+}
+
+function ConsentPreferencesForm({ hasDecision, settings, saveSettings }: {
+  hasDecision: boolean;
+  settings: ConsentSettings;
+  saveSettings: (settings: ConsentSettings) => void;
+}) {
   const [draft, setDraft] = useState(settings);
   const [saved, setSaved] = useState(false);
   function update<K extends keyof ConsentSettings>(key: K, value: ConsentSettings[K]) {
@@ -139,7 +154,7 @@ export function ConsentPreferences() {
       </div>
       <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
         <Button className="rounded-xl" onClick={() => { saveSettings(draft); setSaved(true); }}>Guardar preferencias</Button>
-        <Button variant="outline" className="rounded-xl" onClick={() => { setDraft(necessarySettings); setSaved(false); }}>Desactivar opcionales</Button>
+        <Button variant="outline" className="rounded-xl" onClick={() => { setDraft(necessarySettings); saveSettings(necessarySettings); setSaved(true); }}>Desactivar opcionales</Button>
         <p className="text-sm text-muted-foreground" aria-live="polite">{saved ? 'Preferencias guardadas.' : hasDecision ? 'Modifica las opciones y guarda los cambios.' : 'Aún no has guardado una elección.'}</p>
       </div>
     </div>

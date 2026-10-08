@@ -33,14 +33,14 @@ export default function PrivacyPage() {
       </section>
       <section>
         <h2>Tu elección</h2>
-        <p>La preferencia se guarda localmente en tu navegador. Puedes modificarla en cualquier momento; desactivar todas las opciones no afecta el funcionamiento de las herramientas.</p>
+        <p>La preferencia se guarda localmente en tu navegador. Puedes modificarla en cualquier momento; desactivar todas las opciones no afecta el funcionamiento de las herramientas. Al retirar permisos que estaban activos, la página se recarga para detener los servicios previamente cargados.</p>
         <div className="mt-5"><ConsentPreferences /></div>
       </section>
       <section>
         <h2>Conservación y contacto</h2>
         <p>El sitio no crea cuentas de usuario ni conserva copias de los archivos procesados. La infraestructura y los servicios opcionales pueden aplicar sus propios periodos de conservación.</p>
         {contactEmail ? <p>Para consultas relacionadas con privacidad, escribe a <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.</p> : null}
-        <p>Última actualización: 29 de agosto de 2026.</p>
+        <p>Última actualización: 8 de octubre de 2026.</p>
       </section>
     </ContentPageShell>
   );
