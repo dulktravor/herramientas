@@ -63,7 +63,10 @@ test('permiso de copia denegado explica alternativa; limpiar y volver eliminan e
   await expect(page.getByRole('button', { name: 'Copiar resultado' })).toBeDisabled();
   await page.getByLabel('Cantidad de origen', { exact: true }).fill('7654,32');
   await page.getByRole('link', { name: 'Volver a explorar', exact: true }).click();
+  await expect(page).toHaveURL(`${base}/#herramientas`);
+  await expect(page.getByRole('heading', { name: 'Elige qué necesitas resolver', exact: true })).toBeVisible();
   await page.goBack();
+  await expect(page).toHaveURL(`${base}/herramientas/unidades`);
   await expect(page.getByLabel('Cantidad de origen', { exact: true })).toHaveValue('');
   await page.getByLabel('Cantidad de origen', { exact: true }).fill('456,78');
   await page.evaluate(() => window.dispatchEvent(new PageTransitionEvent('pageshow', { persisted: true })));

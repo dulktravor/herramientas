@@ -39,4 +39,6 @@ Para revisar las diez oportunidades: [auditoría comparativa](auditorias/AUDITOR
 
 Para consultar las decisiones y pruebas de las primeras implementaciones: [QR](planificacion/N-01_IMPLEMENTACION.md), [texto](planificacion/N-02_IMPLEMENTACION.md) y [contraseñas y frases](planificacion/N-03_IMPLEMENTACION.md). Las tres están publicadas y verificadas; la evidencia está en el [registro de despliegue](historial/REGISTRO_DESPLIEGUE.md).
 
+Unidades (N-04), fechas y horarios (N-05) y colores (N-06) también están publicadas y verificadas desde el 8 de octubre de 2026. Sus decisiones, límites y comprobaciones figuran en el [registro de despliegue](historial/REGISTRO_DESPLIEGUE.md).
+
 Para publicar una implementación: [guía de despliegue](operacion/GUIA_DESPLIEGUE_ACTUALIZACIONES.md) → [registro de versiones](historial/REGISTRO_DESPLIEGUE.md).
