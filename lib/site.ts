@@ -8,9 +8,12 @@ export const siteName = 'CeroNube';
 export const siteTagline = 'Resuelve aquí. No subas nada.';
 
 export const siteDescription =
-  'Utilidades privadas para archivos, texto, códigos QR y contraseñas que trabajan directamente en tu navegador.';
+  'Utilidades privadas para archivos, texto, códigos QR, contraseñas, unidades, fechas y colores que trabajan directamente en tu navegador.';
 
 export const publicTools = [
+  { name: 'Convertir unidades', description: 'Convierte longitud, masa, temperatura, área, volumen y almacenamiento digital localmente.', path: '/herramientas/unidades' },
+  { name: 'Calcular fechas y horarios', description: 'Calcula días entre fechas, suma o resta días y convierte horarios entre zonas.', path: '/herramientas/fechas' },
+  { name: 'Convertir y revisar colores', description: 'Convierte HEX, RGB y HSL, crea paletas y revisa el contraste de texto y fondo.', path: '/herramientas/colores' },
   { name: 'Crear y leer QR', description: 'Crea QR para texto, enlaces, Wi-Fi y contactos; lee imágenes localmente.', path: '/herramientas/qr' },
   { name: 'Limpiar y ordenar texto', description: 'Limpia listas y texto, cuenta palabras y descarga TXT en tu navegador.', path: '/herramientas/texto' },
   { name: 'Generar contraseñas y frases', description: 'Genera contraseñas y frases aleatorias en tu dispositivo sin guardar secretos.', path: '/herramientas/contrasenas' },

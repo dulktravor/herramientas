@@ -18,6 +18,9 @@ import {
   QrCode,
   KeyRound,
   TextCursorInput,
+  Ruler,
+  CalendarClock,
+  Palette,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
@@ -43,6 +46,9 @@ type ToolItem = {
 };
 
 const tools: ToolItem[] = [
+  { name: 'Convertir unidades', description: 'Convierte longitud, masa, temperatura, área, volumen y almacenamiento digital.', category: 'utilidades', keywords: 'unidades convertir longitud metros pies pulgadas masa peso kg libras temperatura celsius fahrenheit area volumen litros mb mib almacenamiento', icon: Ruler, stage: 'Disponible', href: '/herramientas/unidades' },
+  { name: 'Calcular fechas y horarios', description: 'Calcula días entre fechas, suma o resta días y convierte horarios entre zonas.', category: 'utilidades', keywords: 'fechas dias calendario sumar restar diferencia horarios hora zona huso reunion viaje bisiesto', icon: CalendarClock, stage: 'Disponible', href: '/herramientas/fechas' },
+  { name: 'Convertir y revisar colores', description: 'Convierte HEX, RGB y HSL, crea una paleta y comprueba el contraste de texto y fondo.', category: 'utilidades', keywords: 'color colores hex rgb hsl paleta contraste opacidad transparencia texto fondo accesibilidad', icon: Palette, stage: 'Disponible', href: '/herramientas/colores' },
   { name: 'Crear y leer QR', description: 'Crea QR para texto, enlaces, Wi-Fi y contactos; lee una imagen en tu dispositivo.', category: 'utilidades', keywords: 'qr codigo enlace url wifi contacto vcard generar leer escanear png svg', icon: QrCode, stage: 'Disponible', href: '/herramientas/qr' },
   { name: 'Limpiar y ordenar texto', description: 'Limpia espacios y listas, ordena líneas, cuenta palabras y descarga el resultado como TXT.', category: 'utilidades', keywords: 'texto txt limpiar ordenar duplicados lineas palabras caracteres mayusculas minusculas listas', icon: TextCursorInput, stage: 'Disponible', href: '/herramientas/texto' },
   { name: 'Generar contraseñas y frases', description: 'Elige caracteres o palabras y genera credenciales aleatorias sin guardar un historial.', category: 'utilidades', keywords: 'contrasena contraseña clave password frase passphrase aleatoria generar credencial', icon: KeyRound, stage: 'Disponible', href: '/herramientas/contrasenas' },
